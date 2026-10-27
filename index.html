@@ -6,7 +6,7 @@
     <title>Shop Acc Clone LQM, Free Fire, Garena - @luonvuituoi7878</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #FFFFFF;
@@ -121,16 +121,47 @@
         }
 
         .balance-text {
-            font-weight: 700;
-            font-size: 14px;
+            font-family: 'Inter', monospace;
+            font-weight: 800;
+            font-size: 15px;
             color: #FF3D72;
-            -webkit-text-stroke: 0.5px #FFFFFF;
+            text-shadow: 0 0 8px rgba(255, 61, 114, 0.45);
+            -webkit-text-stroke: 0.4px #FFFFFF;
             animation: balanceShake 1.5s ease-in-out infinite;
         }
 
         @keyframes balanceShake {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-2px); }
+        }
+
+        /* Auth Buttons (khi chưa đăng nhập) */
+        .auth-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .auth-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .auth-btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #FFFFFF;
+        }
+
+        .auth-btn:hover {
+            border-color: var(--accent);
         }
 
         /* Avatar & Menu Buttons */
@@ -394,11 +425,13 @@
 
         .service-heading {
             text-align: center;
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 22px;
+            font-weight: 800;
             color: #FF3D72;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
             animation: shimmer 3s infinite;
         }
 
@@ -408,58 +441,49 @@
             100% { opacity: 0.85; }
         }
 
+        /* KHUNG DỊCH VỤ CÀY THUÊ MỚI THEO ẢNH */
         .service-card {
             border: 2px solid #FF3D72;
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 20px;
             background: var(--card-bg);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
+            overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-        }
-
-        .service-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .service-left {
+            max-width: 650px;
+            margin: 0 auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 16px;
+            padding-bottom: 24px;
         }
 
-        .service-img {
-            width: 64px;
-            height: 64px;
-            border-radius: 12px;
+        .service-banner {
+            width: 100%;
+            height: auto;
             object-fit: cover;
-            border: 1px solid var(--border-color);
+            display: block;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .service-info h3 {
+        .service-info-container {
+            padding: 24px 20px 16px 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .service-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-color);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .service-status {
             font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             color: #10B981;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10B981;
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+            margin-bottom: 20px;
         }
 
         .view-all-btn {
@@ -467,15 +491,20 @@
             border: none;
             cursor: pointer;
             padding: 0;
-            display: flex;
+            display: inline-flex;
+            justify-content: center;
             align-items: center;
+            transition: transform 0.2s ease;
+        }
+
+        .view-all-btn:hover {
+            transform: scale(1.03);
         }
 
         .view-all-gif {
-            height: 36px;
+            height: 44px;
             width: auto;
             object-fit: contain;
-            border-radius: 8px;
         }
 
         /* OTHER PAGES STYLES */
@@ -500,31 +529,9 @@
             line-height: 1.5;
         }
 
-        /* Theme Toggle helper in footer/top */
-        .theme-switch {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 10px 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            box-shadow: var(--shadow);
-            z-index: 99;
-            transition: var(--transition);
-        }
-        .theme-switch:hover {
-            border-color: var(--accent);
-        }
-
         @media (max-width: 640px) {
             header { padding: 8px 14px; }
-            .service-card { flex-direction: column; align-items: flex-start; }
-            .view-all-btn { align-self: flex-end; }
+            .service-title { font-size: 17px; }
         }
     </style>
 </head>
@@ -535,24 +542,8 @@
         <div class="header-left">
             <img src="IMG_0702.png" alt="Logo Shop" class="logo" onclick="switchPage('home')">
         </div>
-        <div class="header-right">
-            <!-- Nút số dư chứa trong nút tổng kết -->
-            <button class="wallet-btn" onclick="switchPage('topup')">
-                <svg class="wallet-icon" viewBox="0 0 24 24">
-                    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
-                    <path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path>
-                    <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
-                </svg>
-                <span class="balance-text">500,000đ</span>
-            </button>
-            <button class="avatar-btn" onclick="switchPage('profile')">
-                <img src="IMG_0698.jpeg" alt="Avatar" class="header-avatar">
-            </button>
-            <button class="menu-toggle-btn" onclick="toggleSidebar()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <div class="header-right" id="headerRightContent">
+            <!-- Được render động qua JS tùy theo trạng thái Đăng nhập -->
         </div>
     </header>
 
@@ -563,32 +554,30 @@
             <img src="IMG_0702.png" alt="Logo Shop" class="logo" style="height: 32px;" onclick="switchPage('home'); toggleSidebar();">
             <button class="close-menu-btn" onclick="toggleSidebar()">✕</button>
         </div>
-        <div class="sidebar-user" onclick="switchPage('profile'); toggleSidebar();" style="cursor: pointer;">
-            <img src="IMG_0698.jpeg" alt="Avatar">
-            <div class="sidebar-user-info">
-                <div class="username">luonvuituoi7878</div>
-                <div class="userbal">500,000đ</div>
-            </div>
+        
+        <div id="sidebarUserSection">
+            <!-- Nội dung tài khoản trong menu render động -->
         </div>
+
         <div class="sidebar-nav">
             <div class="menu-category-title">Menu</div>
-            <button class="nav-item active" onclick="switchPage('home'); toggleSidebar();">
+            <button class="nav-item active" id="nav-home" onclick="switchPage('home'); toggleSidebar();">
                 <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 Trang chủ
             </button>
-            <button class="nav-item" onclick="switchPage('topup'); toggleSidebar();">
+            <button class="nav-item" id="nav-topup" onclick="switchPage('topup'); toggleSidebar();">
                 <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
                 Nạp tiền
             </button>
-            <button class="nav-item" onclick="switchPage('orders'); toggleSidebar();">
+            <button class="nav-item" id="nav-orders" onclick="switchPage('orders'); toggleSidebar();">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                 Lịch sử đơn
             </button>
-            <button class="nav-item" onclick="switchPage('cashflow'); toggleSidebar();">
+            <button class="nav-item" id="nav-cashflow" onclick="switchPage('cashflow'); toggleSidebar();">
                 <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><polyline points="17 5 12 1 7 5"></polyline><polyline points="7 19 12 23 17 19"></polyline></svg>
                 Lịch sử dòng tiền
             </button>
-            <button class="nav-item" onclick="switchPage('profile'); toggleSidebar();">
+            <button class="nav-item" id="nav-profile" onclick="switchPage('profile'); toggleSidebar();">
                 <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 Hồ sơ
             </button>
@@ -606,9 +595,15 @@
                     Zalo hỗ trợ
                 </a>
             </div>
-            <button class="nav-item" onclick="alert('Đã đăng xuất tài khoản!'); toggleSidebar();">
-                <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                Đăng xuất
+
+            <div class="menu-category-title" style="margin-top: 10px;">Hệ thống</div>
+            <!-- Nút đổi giao diện tích hợp trong menu kèm icon vẽ viền -->
+            <button class="nav-item" onclick="toggleTheme(); toggleSidebar();">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                Đổi giao diện
+            </button>
+            <button class="nav-item" id="authNavBtn" onclick="toggleAuthStatus(); toggleSidebar();">
+                <!-- Icon đổi theo trạng thái đăng nhập/đăng xuất -->
             </button>
         </div>
     </div>
@@ -627,20 +622,16 @@
 
             <div class="service-heading">DỊCH VỤ CÀY THUÊ</div>
 
+            <!-- Khung dịch vụ cập nhật theo ảnh mẫu -->
             <div class="service-card">
-                <div class="service-left">
-                    <img src="IMG_0701.jpeg" alt="Chung Sức" class="service-img">
-                    <div class="service-info">
-                        <h3>Dịch vụ cày thuê Chung Sức Liên Quân</h3>
-                        <div class="status-badge">
-                            <span class="status-dot"></span>
-                            Sẵn sàng
-                        </div>
-                    </div>
+                <img src="IMG_0701.jpeg" alt="Chung Sức" class="service-banner">
+                <div class="service-info-container">
+                    <div class="service-title">Dịch vụ cày thuê Chung Sức Liên Quân</div>
+                    <div class="service-status">Sẵn Sàng</div>
+                    <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Cày Thuê')">
+                        <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
+                    </button>
                 </div>
-                <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Cày Thuê')">
-                    <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
-                </button>
             </div>
         </div>
 
@@ -677,10 +668,79 @@
         </div>
     </main>
 
-    <!-- THEME TOGGLE BUTTON -->
-    <button class="theme-switch" onclick="toggleTheme()">Đổi Giao Diện</button>
-
     <script>
+        // Trạng thái đăng nhập giả lập (Mặc định: false - chưa đăng nhập)
+        let isLoggedIn = false;
+
+        function updateAuthState() {
+            const headerRight = document.getElementById('headerRightContent');
+            const sidebarUser = document.getElementById('sidebarUserSection');
+            const authNavBtn = document.getElementById('authNavBtn');
+
+            if (isLoggedIn) {
+                headerRight.innerHTML = `
+                    <button class="wallet-btn" onclick="switchPage('topup')">
+                        <svg class="wallet-icon" viewBox="0 0 24 24">
+                            <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+                            <path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path>
+                            <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
+                        </svg>
+                        <span class="balance-text">500,000đ</span>
+                    </button>
+                    <button class="avatar-btn" onclick="switchPage('profile')">
+                        <img src="IMG_0698.jpeg" alt="Avatar" class="header-avatar">
+                    </button>
+                    <button class="menu-toggle-btn" onclick="toggleSidebar()">
+                        <span></span><span></span><span></span>
+                    </button>
+                `;
+
+                sidebarUser.innerHTML = `
+                    <div class="sidebar-user" onclick="switchPage('profile'); toggleSidebar();" style="cursor: pointer;">
+                        <img src="IMG_0698.jpeg" alt="Avatar">
+                        <div class="sidebar-user-info">
+                            <div class="username">luonvuituoi7878</div>
+                            <div class="userbal">500,000đ</div>
+                        </div>
+                    </div>
+                `;
+
+                authNavBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    Đăng xuất
+                `;
+            } else {
+                headerRight.innerHTML = `
+                    <div class="auth-actions">
+                        <button class="auth-btn" onclick="toggleAuthStatus()">Đăng nhập</button>
+                        <button class="auth-btn primary" onclick="toggleAuthStatus()">Đăng ký</button>
+                    </div>
+                    <button class="menu-toggle-btn" onclick="toggleSidebar()">
+                        <span></span><span></span><span></span>
+                    </button>
+                `;
+
+                sidebarUser.innerHTML = `
+                    <div class="sidebar-user">
+                        <div class="sidebar-user-info">
+                            <div class="username" style="color: var(--text-secondary);">Chưa đăng nhập tài khoản</div>
+                        </div>
+                    </div>
+                `;
+
+                authNavBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                    Đăng nhập / Đăng ký
+                `;
+            }
+        }
+
+        function toggleAuthStatus() {
+            isLoggedIn = !isLoggedIn;
+            updateAuthState();
+            alert(isLoggedIn ? 'Đã đăng nhập thành công vào tài khoản demo!' : 'Đã đăng xuất tài khoản!');
+        }
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
@@ -689,7 +749,6 @@
         }
 
         function toggleSubmenu(event) {
-            const btn = event.currentTarget;
             const submenu = document.getElementById('supportSubmenu');
             submenu.classList.toggle('open');
         }
@@ -697,6 +756,14 @@
         function switchPage(pageId) {
             document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
+
+            // Fix lỗi hiển thị menu vẫn ở Trang chủ khi chuyển tab khác
+            document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => item.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -706,6 +773,9 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
         }
+
+        // Khởi tạo trạng thái ban đầu
+        updateAuthState();
     </script>
 </body>
 </html>
