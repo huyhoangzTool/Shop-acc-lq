@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Acc Clone LQM, Free Fire, Garena - @luonvuituoi7878</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --text-color: #111827;
+            --text-secondary: #6B7280;
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+            --accent: #FF3D72;
+            --accent-hover: #E03061;
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --sidebar-bg: #FFFFFF;
+            --success: #10B981;
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0F172A;
+            --text-color: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --card-bg: #1E293B;
+            --border-color: #334155;
+            --accent: #FF3D72;
+            --accent-hover: #FF5C88;
+            --header-bg: rgba(15, 23, 42, 0.85);
+            --sidebar-bg: #1E293B;
+            --success: #34D399;
+            --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 24px);
+            max-width: 1200px;
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Wallet & Balance Button */
+        .wallet-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .wallet-btn:hover {
+            border-color: var(--accent);
+        }
+
+        .wallet-icon {
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-color);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .balance-text {
+            font-weight: 700;
+            font-size: 14px;
+            color: #FF3D72;
+            -webkit-text-stroke: 0.5px #FFFFFF;
+            animation: balanceShake 1.5s ease-in-out infinite;
+        }
+
+        @keyframes balanceShake {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        /* Avatar & Menu Buttons */
+        .avatar-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .header-avatar:hover {
+            border-color: var(--accent);
+        }
+
+        .menu-toggle-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .menu-toggle-btn span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle-btn:hover {
+            border-color: var(--accent);
+        }
+
+        /* SIDEBAR MENU */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100%;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar.active {
+            transform: translateX(320px);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .close-menu-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-color);
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .close-menu-btn:hover {
+            background: var(--border-color);
+        }
+
+        .sidebar-user {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(255, 61, 114, 0.03);
+        }
+
+        .sidebar-user img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--accent);
+        }
+
+        .sidebar-user-info .username {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .sidebar-user-info .userbal {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .sidebar-nav {
+            padding: 16px 12px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu-category-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-color);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: var(--transition);
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 61, 114, 0.08);
+            color: var(--accent);
+        }
+
+        .nav-item:hover svg, .nav-item.active svg {
+            stroke: var(--accent);
+        }
+
+        .submenu {
+            display: none;
+            flex-direction: column;
+            padding-left: 28px;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .submenu.open {
+            display: flex;
+        }
+
+        /* MAIN CONTENT CONTAINER */
+        main {
+            max-width: 1000px;
+            margin: 90px auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-view {
+            display: none;
+        }
+
+        .page-view.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* TRANG CHỦ STYLES */
+        .notice-box {
+            border: 2px solid #FF3D72;
+            border-radius: 16px;
+            padding: 24px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .notice-title {
+            color: #FF3D72;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .notice-content {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .notice-content .highlight {
+            color: #FF3D72;
+            font-weight: 600;
+        }
+
+        .service-heading {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #FF3D72;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.85; }
+            50% { opacity: 1; text-shadow: 0 0 10px rgba(255, 61, 114, 0.4); }
+            100% { opacity: 0.85; }
+        }
+
+        .service-card {
+            border: 2px solid #FF3D72;
+            border-radius: 16px;
+            padding: 20px;
+            background: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .service-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .service-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #10B981;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10B981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+        }
+
+        .view-all-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .view-all-gif {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* OTHER PAGES STYLES */
+        .page-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .page-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .page-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Theme Toggle helper in footer/top */
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            box-shadow: var(--shadow);
+            z-index: 99;
+            transition: var(--transition);
+        }
+        .theme-switch:hover {
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            header { padding: 8px 14px; }
+            .service-card { flex-direction: column; align-items: flex-start; }
+            .view-all-btn { align-self: flex-end; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <img src="IMG_0702.png" alt="Logo Shop" class="logo" onclick="switchPage('home')">
+        </div>
+        <div class="header-right">
+            <!-- Nút số dư chứa trong nút tổng kết -->
+            <button class="wallet-btn" onclick="switchPage('topup')">
+                <svg class="wallet-icon" viewBox="0 0 24 24">
+                    <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+                    <path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path>
+                    <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
+                </svg>
+                <span class="balance-text">500,000đ</span>
+            </button>
+            <button class="avatar-btn" onclick="switchPage('profile')">
+                <img src="IMG_0698.jpeg" alt="Avatar" class="header-avatar">
+            </button>
+            <button class="menu-toggle-btn" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- SIDEBAR MENU -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="IMG_0702.png" alt="Logo Shop" class="logo" style="height: 32px;" onclick="switchPage('home'); toggleSidebar();">
+            <button class="close-menu-btn" onclick="toggleSidebar()">✕</button>
+        </div>
+        <div class="sidebar-user" onclick="switchPage('profile'); toggleSidebar();" style="cursor: pointer;">
+            <img src="IMG_0698.jpeg" alt="Avatar">
+            <div class="sidebar-user-info">
+                <div class="username">luonvuituoi7878</div>
+                <div class="userbal">500,000đ</div>
+            </div>
+        </div>
+        <div class="sidebar-nav">
+            <div class="menu-category-title">Menu</div>
+            <button class="nav-item active" onclick="switchPage('home'); toggleSidebar();">
+                <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Trang chủ
+            </button>
+            <button class="nav-item" onclick="switchPage('topup'); toggleSidebar();">
+                <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                Nạp tiền
+            </button>
+            <button class="nav-item" onclick="switchPage('orders'); toggleSidebar();">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Lịch sử đơn
+            </button>
+            <button class="nav-item" onclick="switchPage('cashflow'); toggleSidebar();">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><polyline points="17 5 12 1 7 5"></polyline><polyline points="7 19 12 23 17 19"></polyline></svg>
+                Lịch sử dòng tiền
+            </button>
+            <button class="nav-item" onclick="switchPage('profile'); toggleSidebar();">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Hồ sơ
+            </button>
+            <button class="nav-item" onclick="toggleSubmenu(event)">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                Hỗ trợ
+            </button>
+            <div class="submenu" id="supportSubmenu">
+                <a href="https://t.me/luonvuituoi7878" target="_blank" class="nav-item">
+                    <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    Telegram hỗ trợ
+                </a>
+                <a href="https://zalo.me/09998878677" target="_blank" class="nav-item">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    Zalo hỗ trợ
+                </a>
+            </div>
+            <button class="nav-item" onclick="alert('Đã đăng xuất tài khoản!'); toggleSidebar();">
+                <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                Đăng xuất
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main>
+        <!-- TRANG CHỦ -->
+        <div id="home" class="page-view active">
+            <div class="notice-box">
+                <div class="notice-title">Thông Báo!</div>
+                <div class="notice-content">
+                    Đây là Demo Web Shop Acc LQM, FF,…<br>
+                    Toàn bộ source code thuộc <span class="highlight">@luonvuituoi7878</span>, mua source code web shop acc, web tài nguyên mmo, web dvmxh giá rẻ liên hệ Telegram: <span class="highlight">@luonvuituoi7878</span>
+                </div>
+            </div>
+
+            <div class="service-heading">DỊCH VỤ CÀY THUÊ</div>
+
+            <div class="service-card">
+                <div class="service-left">
+                    <img src="IMG_0701.jpeg" alt="Chung Sức" class="service-img">
+                    <div class="service-info">
+                        <h3>Dịch vụ cày thuê Chung Sức Liên Quân</h3>
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            Sẵn sàng
+                        </div>
+                    </div>
+                </div>
+                <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Cày Thuê')">
+                    <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
+                </button>
+            </div>
+        </div>
+
+        <!-- NẠP TIỀN -->
+        <div id="topup" class="page-view">
+            <div class="page-card">
+                <h2>Nạp Tiền Tài Khoản</h2>
+                <p>Chọn phương thức nạp tiền (QR Code Momo, Ngân hàng Vietcombank, Thẻ cào điện thoại) để tự động cộng tiền vào số dư.</p>
+            </div>
+        </div>
+
+        <!-- LỊCH SỬ ĐƠN -->
+        <div id="orders" class="page-view">
+            <div class="page-card">
+                <h2>Lịch Sử Đơn Hàng</h2>
+                <p>Danh sách các tài khoản game Clone LQM, Free Fire, Garena bạn đã mua gần đây.</p>
+            </div>
+        </div>
+
+        <!-- LỊCH SỬ DÒNG TIỀN -->
+        <div id="cashflow" class="page-view">
+            <div class="page-card">
+                <h2>Lịch Sử Dòng Tiền</h2>
+                <p>Thống kê chi tiết biến động số dư, giao dịch nạp tiền và mua hàng.</p>
+            </div>
+        </div>
+
+        <!-- HỒ SƠ -->
+        <div id="profile" class="page-view">
+            <div class="page-card">
+                <h2>Hồ Sơ Cá Nhân</h2>
+                <p>Tên tài khoản: <b>luonvuituoi7878</b><br>Số dư hiện tại: <b style="color: var(--accent);">500,000đ</b><br>Telegram: t.me/luonvuituoi7878<br>Zalo: zalo.me/09998878677</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- THEME TOGGLE BUTTON -->
+    <button class="theme-switch" onclick="toggleTheme()">Đổi Giao Diện</button>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function toggleSubmenu(event) {
+            const btn = event.currentTarget;
+            const submenu = document.getElementById('supportSubmenu');
+            submenu.classList.toggle('open');
+        }
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        }
+    </script>
+</body>
+</html>
