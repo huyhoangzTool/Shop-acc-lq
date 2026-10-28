@@ -18,6 +18,7 @@
             --accent-hover: #d02044;
             --header-bg: rgba(255, 255, 255, 0.88);
             --sidebar-bg: #FFFFFF;
+            --shadow-3d: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
             --shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06);
             --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -32,6 +33,7 @@
             --accent-hover: #ff476e;
             --header-bg: rgba(15, 23, 42, 0.88);
             --sidebar-bg: #1E293B;
+            --shadow-3d: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
             --shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3);
         }
 
@@ -408,10 +410,10 @@
             font-weight: 600;
         }
 
-        /* Tiêu đề Dịch Vụ */
         .service-heading-container {
             text-align: center;
             margin-bottom: 20px;
+            margin-top: 24px;
         }
 
         .service-heading {
@@ -432,7 +434,7 @@
             border-radius: 2px;
         }
 
-        /* Dịch vụ cày thuê dạng 2 CỘT KHÔNG VIỀN BAO TOÀN KHUNG */
+        /* DỊCH VỤ CÀY THUÊ & ACC GAME GIÁ RẺ */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -456,7 +458,6 @@
             transform: translateY(-2px);
         }
 
-        /* Ảnh banner to rõ ràng, không bị cắt bớt */
         .service-banner {
             width: 100%;
             height: auto;
@@ -502,6 +503,88 @@
             height: 36px;
             width: auto;
             object-fit: contain;
+        }
+
+        /* TRANG ĐĂNG KÝ (REGISTER 3D EFFECT) */
+        .register-card-3d {
+            max-width: 440px;
+            margin: 20px auto;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 20px;
+            padding: 32px 24px;
+            box-shadow: var(--shadow-3d);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: #eb2a51;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group-3d {
+            margin-bottom: 18px;
+        }
+
+        .label-3d {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .input-3d {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-color);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-color);
+            font-size: 14px;
+            outline: none;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.06), inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .input-3d {
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+        }
+
+        .input-3d:focus {
+            box-shadow: 0 0 0 2px #eb2a51;
+        }
+
+        .error-msg {
+            color: #eb2a51;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .btn-register-3d {
+            width: 100%;
+            background: #eb2a51;
+            color: #FFFFFF;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(235, 42, 81, 0.3);
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .btn-register-3d:hover {
+            background: #d02044;
+            transform: translateY(-1px);
         }
 
         /* TAB NẠP TIỀN */
@@ -555,7 +638,6 @@
             display: block;
         }
 
-        /* Ô Ô VUÔNG QR BANKING CHUẨN ĐÚNG YÊU CẦU */
         .qr-box-square {
             width: 220px;
             height: 220px;
@@ -974,7 +1056,7 @@
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 Đổi giao diện
             </button>
-            <button class="nav-item" id="authNavBtn" onclick="toggleAuthStatus(); toggleSidebar();">
+            <button class="nav-item" id="authNavBtn" onclick="handleAuthNavClick(); toggleSidebar();">
                 <!-- Render động -->
             </button>
         </div>
@@ -992,12 +1074,12 @@
                 </div>
             </div>
 
+            <!-- DỊCH VỤ CÀY THUÊ -->
             <div class="service-heading-container">
                 <div class="service-heading">DỊCH VỤ CÀY THUÊ</div>
                 <div class="service-heading-line"></div>
             </div>
 
-            <!-- Khung dịch vụ 2 CỘT TỰ DO, BẮT MẮT -->
             <div class="services-grid">
                 <div class="service-card">
                     <img src="IMG_0701.jpeg" alt="Chung Sức" class="service-banner">
@@ -1013,13 +1095,58 @@
                 <div class="service-card">
                     <img src="IMG_0717.png" alt="Blox Fruits" class="service-banner">
                     <div class="service-info-container">
-                        <div class="service-title">Thuê nhảy chung sức Blox Fruits</div>
+                        <div class="service-title">Dịch vụ cày thuê Blox Fruits theo Y/C</div>
                         <div class="service-status">Sẵn Sàng</div>
                         <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Blox Fruits')">
                             <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
                 </div>
+            </div>
+
+            <!-- KHU ACC GAME GIÁ RẺ -->
+            <div class="service-heading-container">
+                <div class="service-heading">ACC GAME GIÁ RẺ</div>
+                <div class="service-heading-line"></div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <!-- Ảnh GIF cún Nhật phong cách cute -->
+                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIxdmF6dzF0MHFjc2twZWoxNncwbXo2MmYybWFoZXUydnVrcXkyYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mCRJDo24UvJMA/giphy.gif" alt="Cún Nhật" class="service-banner">
+                    <div class="service-info-container">
+                        <div class="service-title">Test (Dont Buy)</div>
+                        <div class="service-status">Sẵn Sàng</div>
+                        <button class="view-all-btn" onclick="alert('Xem danh mục Acc Game Giá Rẻ')">
+                            <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANG ĐĂNG KÝ -->
+        <div id="register" class="page-view">
+            <div class="register-card-3d">
+                <div class="register-title">Đăng Ký</div>
+                
+                <div class="input-group-3d">
+                    <label class="label-3d">Tên đăng nhập (Username):</label>
+                    <input type="text" class="input-3d" id="regUsername" placeholder="Ví dụ: user_123" oninput="validateUsernameInput(this)">
+                    <div class="error-msg" id="regUsernameError">Tên đăng nhập tối đa 12 ký tự, không dấu, chỉ dùng . _ và không có dấu . ở cuối.</div>
+                </div>
+
+                <div class="input-group-3d">
+                    <label class="label-3d">Email (Không bắt buộc):</label>
+                    <input type="email" class="input-3d" placeholder="nhapemail@gmail.com">
+                </div>
+
+                <div class="input-group-3d">
+                    <label class="label-3d">Mật khẩu:</label>
+                    <input type="password" class="input-3d" placeholder="••••••••">
+                </div>
+
+                <button class="btn-register-3d" onclick="submitRegister()">Đăng ký tài khoản</button>
             </div>
         </div>
 
@@ -1035,7 +1162,6 @@
 
                 <!-- NGÂN HÀNG -->
                 <div id="topupBankSection" class="topup-content-section active">
-                    <!-- Ô VUÔNG QR CHUẨN ĐÚNG NỘI DUNG YÊU CẦU -->
                     <div class="qr-box-square">
                         QR BANKING CỦA BẠN TẠI ĐÂY
                     </div>
@@ -1053,7 +1179,6 @@
 
                     <div class="form-group">
                         <label class="form-label">Nội dung chuyển khoản (Không được xoá):</label>
-                        <!-- Ô TRỐNG KHÔNG ĐỂ GÌ THEO YÊU CẦU -->
                         <div class="transfer-content-box">
                             <span class="transfer-content-text" id="transferContentText"></span>
                             <button class="copy-btn" onclick="copyTransferContent()">Copy</button>
@@ -1226,8 +1351,8 @@
             } else {
                 headerRight.innerHTML = `
                     <div class="auth-actions">
-                        <button class="auth-btn" onclick="toggleAuthStatus()">Đăng nhập</button>
-                        <button class="auth-btn primary" onclick="toggleAuthStatus()">Đăng ký</button>
+                        <button class="auth-btn" onclick="switchPage('register')">Đăng nhập</button>
+                        <button class="auth-btn primary" onclick="switchPage('register')">Đăng ký</button>
                     </div>
                     <button class="menu-toggle-btn" onclick="toggleSidebar()">
                         <span></span><span></span><span></span>
@@ -1249,10 +1374,14 @@
             }
         }
 
-        function toggleAuthStatus() {
-            isLoggedIn = !isLoggedIn;
-            updateAuthState();
-            alert(isLoggedIn ? 'Đã đăng nhập thành công vào tài khoản demo!' : 'Đã đăng xuất tài khoản!');
+        function handleAuthNavClick() {
+            if (isLoggedIn) {
+                isLoggedIn = false;
+                updateAuthState();
+                alert('Đã đăng xuất tài khoản!');
+            } else {
+                switchPage('register');
+            }
         }
 
         function toggleSidebar() {
@@ -1269,7 +1398,10 @@
 
         function switchPage(pageId) {
             document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
 
             document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => item.classList.remove('active'));
             const activeNav = document.getElementById('nav-' + pageId);
@@ -1286,6 +1418,44 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('web_theme', newTheme);
+        }
+
+        // Xử lý Validation Username 3D
+        function validateUsernameInput(input) {
+            const err = document.getElementById('regUsernameError');
+            let val = input.value;
+
+            // Loại bỏ ký tự tiếng Việt có dấu
+            val = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D");
+            // Lọc chỉ giữ ký tự chữ, số và . _
+            val = val.replace(/[^a-zA-Z0-9._]/g, '');
+
+            if (val.length > 12) {
+                val = val.substring(0, 12);
+            }
+
+            input.value = val;
+
+            if (val.endsWith('.') || val.length === 0) {
+                err.style.display = 'block';
+            } else {
+                err.style.display = 'none';
+            }
+        }
+
+        function submitRegister() {
+            const input = document.getElementById('regUsername');
+            const val = input.value;
+
+            if (!val || val.endsWith('.')) {
+                alert('Tên đăng nhập không hợp lệ! Vui lòng kiểm tra lại.');
+                return;
+            }
+
+            isLoggedIn = true;
+            updateAuthState();
+            alert('Đăng ký tài khoản thành công!');
+            switchPage('home');
         }
 
         function switchTopupTab(type) {
