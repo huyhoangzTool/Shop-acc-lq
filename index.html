@@ -1,40 +1,26 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Acc Clone LQM, Free Fire, Garena - @luonvuituoi7878</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display+SC:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display+SC:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FFFFFF;
-            --text-color: #111827;
-            --text-secondary: #6B7280;
-            --card-bg: #FFFFFF;
-            --border-color: #E5E7EB;
-            --accent: #eb2a51;
-            --accent-hover: #d02044;
-            --header-bg: rgba(255, 255, 255, 0.88);
-            --sidebar-bg: #FFFFFF;
-            --shadow-3d: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            --shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06);
-            --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme="dark"] {
             --bg-color: #0F172A;
             --text-color: #F9FAFB;
             --text-secondary: #9CA3AF;
-            --card-bg: #1E293B;
-            --border-color: #334155;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --border-color: #E5E7EB;
             --accent: #eb2a51;
-            --accent-hover: #ff476e;
-            --header-bg: rgba(15, 23, 42, 0.88);
-            --sidebar-bg: #1E293B;
-            --shadow-3d: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-            --shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3);
+            --accent-hover: #d02044;
+            --header-bg: rgba(255, 255, 255, 0.92);
+            --sidebar-bg: #FFFFFF;
+            --shadow-3d: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+            --shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.08);
+            --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -45,16 +31,27 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* BACKGROUND MỚI: FULL TRÊN PC, CHUẨN VỊ TRÍ KHÔNG CẮT TRÊN MOBILE */
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-image: url('image/background.jpeg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center top;
+            background-size: cover;
+            color: #111827;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        /* HEADER */
+        @media (max-width: 768px) {
+            body {
+                background-size: 100% auto;
+                background-attachment: scroll;
+            }
+        }
+
+        /* HEADER & LOGO TO LÊN */
         header {
             position: fixed;
             top: 12px;
@@ -66,8 +63,8 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 8px 16px;
+            border-radius: 14px;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -80,26 +77,32 @@
             align-items: center;
         }
 
+        /* Tăng kích thước Logo to hơn */
         .logo {
-            height: 36px;
+            height: 48px;
             width: auto;
             object-fit: contain;
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.03);
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .wallet-btn {
             display: flex;
             align-items: center;
             gap: 6px;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            padding: 6px 12px;
+            background: #FFFFFF;
+            border: 1.5px solid var(--border-color);
+            padding: 8px 14px;
             border-radius: 20px;
             cursor: pointer;
             transition: var(--transition);
@@ -110,27 +113,18 @@
         }
 
         .wallet-icon {
-            width: 16px;
-            height: 16px;
-            stroke: var(--text-color);
+            width: 18px;
+            height: 18px;
+            stroke: #111827;
             fill: none;
             stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
         }
 
-        /* NEON EFFECT CHO SỐ DƯ */
         .balance-text {
             font-family: 'Press Start 2P', monospace;
-            font-size: 10px;
+            font-size: 11px;
             color: #eb2a51;
-            text-shadow: 0 0 5px rgba(235, 42, 81, 0.6), 0 0 10px rgba(235, 42, 81, 0.4), 0 0 15px rgba(235, 42, 81, 0.2);
-            animation: balanceShake 1.5s ease-in-out infinite;
-        }
-
-        @keyframes balanceShake {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-2px); }
+            text-shadow: 0 0 5px rgba(235, 42, 81, 0.4);
         }
 
         .auth-actions {
@@ -140,10 +134,10 @@
         }
 
         .auth-btn {
-            background: transparent;
+            background: #FFFFFF;
             border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 6px 14px;
+            color: #111827;
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 13px;
             font-weight: 600;
@@ -161,59 +155,41 @@
             border-color: var(--accent);
         }
 
-        .avatar-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-
         .header-avatar {
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             object-fit: cover;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-
-        .header-avatar:hover {
-            border-color: var(--accent);
+            border: 2px solid var(--accent);
         }
 
         .menu-toggle-btn {
-            background: none;
+            background: #FFFFFF;
             border: 1px solid var(--border-color);
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 4px;
             cursor: pointer;
-            transition: var(--transition);
         }
 
         .menu-toggle-btn span {
             display: block;
-            width: 16px;
+            width: 18px;
             height: 2px;
-            background-color: var(--text-color);
+            background-color: #111827;
             border-radius: 2px;
         }
 
-        .menu-toggle-btn:hover {
-            border-color: var(--accent);
-        }
-
-        /* SIDEBAR */
+        /* SIDEBAR MENU */
         .sidebar-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(4px);
             opacity: 0;
             visibility: hidden;
@@ -238,7 +214,7 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-3d);
         }
 
         .sidebar.active {
@@ -256,15 +232,9 @@
         .close-menu-btn {
             background: none;
             border: none;
-            font-size: 18px;
-            color: var(--text-color);
+            font-size: 20px;
+            color: #111827;
             cursor: pointer;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
         }
 
         .sidebar-user {
@@ -277,24 +247,11 @@
         }
 
         .sidebar-user img {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             object-fit: cover;
-            border: 1px solid var(--accent);
-        }
-
-        .sidebar-user-info .username {
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .sidebar-user-info .userbal {
-            font-size: 10px;
-            color: var(--accent);
-            font-family: 'Press Start 2P', monospace;
-            text-shadow: 0 0 4px rgba(235, 42, 81, 0.5);
-            margin-top: 4px;
+            border: 2px solid var(--accent);
         }
 
         .sidebar-nav {
@@ -310,7 +267,7 @@
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            color: var(--text-secondary);
+            color: #6B7280;
             padding: 8px 10px;
         }
 
@@ -320,12 +277,11 @@
             gap: 10px;
             padding: 10px;
             border-radius: 8px;
-            color: var(--text-color);
+            color: #111827;
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
             cursor: pointer;
-            transition: var(--transition);
             border: none;
             background: none;
             width: 100%;
@@ -335,11 +291,9 @@
         .nav-item svg {
             width: 18px;
             height: 18px;
-            stroke: var(--text-color);
+            stroke: #111827;
             fill: none;
             stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
         }
 
         .nav-item:hover, .nav-item.active {
@@ -354,20 +308,28 @@
         .submenu {
             display: none;
             flex-direction: column;
-            padding-left: 24px;
-            gap: 2px;
+            padding-left: 12px;
+            gap: 4px;
+            margin-top: 4px;
         }
 
         .submenu.open {
             display: flex;
         }
 
+        .lienhe-gif-btn {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
         /* MAIN CONTENT */
         main {
             flex: 1;
-            max-width: 900px;
+            max-width: 960px;
             width: 100%;
-            margin: 80px auto 40px auto;
+            margin: 90px auto 40px auto;
             padding: 0 16px;
         }
 
@@ -385,7 +347,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TRANG CHỦ */
+        /* TRANG CHỦ BANNER & TIÊU ĐỀ */
         .home-banner {
             width: 100%;
             height: auto;
@@ -399,17 +361,27 @@
         .service-heading-container {
             text-align: center;
             margin-bottom: 20px;
-            margin-top: 24px;
+            margin-top: 32px;
         }
 
         .service-heading {
             display: inline-block;
-            font-size: 22px;
+            font-size: 24px;
             font-family: 'Playfair Display SC', serif;
             font-weight: 700;
             color: #eb2a51;
             text-transform: uppercase;
             margin-bottom: 6px;
+        }
+
+        .sub-game-heading {
+            font-family: 'Grenze Gotisch', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #eb2a51;
+            text-align: center;
+            margin: 24px 0 14px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .service-heading-line {
@@ -420,11 +392,11 @@
             border-radius: 2px;
         }
 
-        /* DỊCH VỤ CÀY THUÊ & ACC GAME KHÔNG VIỀN, HIỆU ỨNG 3D MỀM MẠI */
+        /* LƯỚI KHUNG DỊCH VỤ & ACC GAME - HIỆU ỨNG 3D BÓNG ĐỔ KHÔNG VIỀN */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            gap: 18px;
         }
 
         .service-card {
@@ -441,7 +413,7 @@
         }
 
         .service-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
 
         .service-banner {
@@ -461,7 +433,7 @@
         .service-title {
             font-size: 14px;
             font-weight: 700;
-            color: var(--text-color);
+            color: #111827;
             line-height: 1.35;
             margin-bottom: 6px;
             min-height: 38px;
@@ -472,6 +444,18 @@
             font-weight: 600;
             color: #10B981;
             margin-bottom: 12px;
+        }
+
+        .service-quantity {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4B5563;
+            margin-bottom: 12px;
+        }
+
+        .service-quantity span {
+            color: #eb2a51;
+            font-weight: 800;
         }
 
         .view-all-btn {
@@ -490,7 +474,7 @@
             object-fit: contain;
         }
 
-        /* 3D AUTH CARDS (ĐĂNG KÝ & ĐĂNG NHẬP) */
+        /* AUTH 3D CARDS (ĐĂNG KÝ & ĐĂNG NHẬP) */
         .auth-card-3d {
             max-width: 440px;
             margin: 20px auto;
@@ -509,7 +493,6 @@
             font-weight: 800;
             color: #eb2a51;
             margin-bottom: 24px;
-            letter-spacing: 0.5px;
         }
 
         .input-group-3d {
@@ -520,29 +503,26 @@
             display: block;
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: #4B5563;
             margin-bottom: 8px;
         }
 
         .input-3d {
             width: 100%;
             padding: 12px 16px;
-            background: var(--bg-color);
-            border: none;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            color: var(--text-color);
+            color: #111827;
             font-size: 14px;
             outline: none;
-            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.06), inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.04);
             transition: var(--transition);
         }
 
-        [data-theme="dark"] .input-3d {
-            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), inset -1px -1px 3px rgba(255, 255, 255, 0.05);
-        }
-
         .input-3d:focus {
-            box-shadow: 0 0 0 2px #eb2a51;
+            border-color: #eb2a51;
+            box-shadow: 0 0 0 2px rgba(235, 42, 81, 0.2);
         }
 
         .error-msg {
@@ -569,23 +549,89 @@
 
         .btn-auth-3d:hover {
             background: #d02044;
-            transform: translateY(-1px);
         }
 
-        /* TAB NẠP TIỀN */
+        /* POPUP BẮT BUỘC ĐĂNG NHẬP */
+        .login-popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .login-popup-overlay.active {
+            display: flex;
+        }
+
+        .login-popup-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 32px 24px;
+            max-width: 380px;
+            width: calc(100% - 32px);
+            text-align: center;
+            box-shadow: var(--shadow-3d);
+        }
+
+        .popup-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #eb2a51;
+            margin-bottom: 8px;
+        }
+
+        .popup-sub {
+            font-size: 14px;
+            color: #4B5563;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .popup-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .popup-btn.login {
+            background: #eb2a51;
+            color: #FFFFFF;
+        }
+
+        .popup-btn.register {
+            background: rgba(235, 42, 81, 0.1);
+            color: #eb2a51;
+        }
+
+        /* NẠP TIỀN TAB */
         .page-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: var(--shadow);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-3d);
         }
 
         .page-card h2 {
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 16px;
-            color: var(--accent);
+            color: #eb2a51;
         }
 
         .topup-tabs {
@@ -604,9 +650,8 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: 13px;
-            color: var(--text-secondary);
+            color: #6B7280;
             cursor: pointer;
-            transition: var(--transition);
         }
 
         .topup-tab-btn.active {
@@ -636,8 +681,8 @@
             padding: 16px;
             background: rgba(235, 42, 81, 0.02);
             font-weight: 700;
-            font-size: 14px;
-            color: var(--text-color);
+            font-size: 13px;
+            color: #eb2a51;
             line-height: 1.4;
         }
 
@@ -650,7 +695,7 @@
             font-size: 13px;
             font-weight: 600;
             margin-bottom: 6px;
-            color: var(--text-secondary);
+            color: #4B5563;
         }
 
         .denomination-grid {
@@ -661,15 +706,14 @@
         }
 
         .denom-btn {
-            background: var(--bg-color);
+            background: #FFFFFF;
             border: 1px solid var(--border-color);
             padding: 8px;
             border-radius: 6px;
             font-weight: 600;
             font-size: 13px;
-            color: var(--text-color);
+            color: #111827;
             cursor: pointer;
-            transition: var(--transition);
             text-align: center;
         }
 
@@ -683,7 +727,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: var(--bg-color);
+            background: #FFFFFF;
             border: 1px solid var(--border-color);
             padding: 10px 14px;
             border-radius: 8px;
@@ -706,28 +750,18 @@
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .copy-btn:hover {
-            background: var(--accent-hover);
         }
 
         .input-field, .select-field {
             width: 100%;
             padding: 10px 12px;
-            background: var(--bg-color);
+            background: #FFFFFF;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            color: var(--text-color);
+            color: #111827;
             font-size: 14px;
             outline: none;
-            transition: var(--transition);
             margin-bottom: 14px;
-        }
-
-        .input-field:focus, .select-field:focus {
-            border-color: #eb2a51;
         }
 
         .action-submit-btn {
@@ -740,27 +774,9 @@
             font-size: 14px;
             font-weight: 700;
             cursor: pointer;
-            transition: var(--transition);
         }
 
-        .action-submit-btn:hover {
-            background: #d02044;
-        }
-
-        .toast-noti {
-            display: none;
-            background: #10B981;
-            color: #FFFFFF;
-            padding: 10px 14px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 13px;
-            text-align: center;
-            margin-top: 14px;
-            animation: fadeIn 0.25s ease;
-        }
-
-        /* LỊCH SỬ ĐƠN (CHUẨN ẢNH IMAGE_9.PNG) */
+        /* LỊCH SỬ ĐƠN (IMAGE_9.PNG) */
         .order-stats-container {
             display: flex;
             flex-direction: column;
@@ -772,13 +788,12 @@
             background: var(--card-bg);
             border-radius: 14px;
             padding: 16px 20px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-3d);
             display: flex;
             align-items: center;
             gap: 16px;
             position: relative;
             overflow: hidden;
-            border: 1px solid var(--border-color);
         }
 
         .order-stat-card::before {
@@ -809,7 +824,7 @@
 
         .stat-info .stat-label {
             font-size: 13px;
-            color: var(--text-secondary);
+            color: #6B7280;
             font-weight: 600;
             margin-bottom: 4px;
         }
@@ -817,16 +832,15 @@
         .stat-info .stat-value {
             font-size: 18px;
             font-weight: 800;
-            color: var(--text-color);
+            color: #111827;
         }
 
         .order-empty-box {
             background: var(--card-bg);
-            border: 1px dashed var(--border-color);
             border-radius: 16px;
             padding: 40px 20px;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-3d);
         }
 
         .empty-illustration {
@@ -844,7 +858,7 @@
 
         .empty-subtitle {
             font-size: 13px;
-            color: var(--text-secondary);
+            color: #6B7280;
             margin-bottom: 20px;
         }
 
@@ -857,12 +871,7 @@
             font-weight: 700;
             font-size: 14px;
             cursor: pointer;
-            transition: var(--transition);
             box-shadow: 0 4px 12px rgba(235, 42, 81, 0.3);
-        }
-
-        .buy-now-btn:hover {
-            background: #d02044;
         }
 
         /* HỒ SƠ */
@@ -870,10 +879,9 @@
             max-width: 500px;
             margin: 0 auto;
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 24px 16px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-3d);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -881,18 +889,18 @@
         }
 
         .profile-avatar-large {
-            width: 80px;
-            height: 80px;
+            width: 84px;
+            height: 84px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #eb2a51;
+            border: 3px solid #eb2a51;
             margin-bottom: 12px;
         }
 
         .profile-username {
             font-size: 16px;
             font-weight: 700;
-            color: var(--text-color);
+            color: #111827;
             margin-bottom: 4px;
         }
 
@@ -901,7 +909,6 @@
             font-size: 11px;
             font-weight: 700;
             color: #eb2a51;
-            text-shadow: 0 0 6px rgba(235, 42, 81, 0.5);
             margin-bottom: 20px;
         }
 
@@ -914,9 +921,9 @@
 
         .profile-bar {
             width: 100%;
-            background: rgba(235, 42, 81, 0.02);
+            background: #FFFFFF;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 12px 16px;
             display: flex;
             flex-direction: column;
@@ -945,7 +952,7 @@
         .profile-status-text {
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: #6B7280;
         }
 
         .profile-status-text.linked {
@@ -963,62 +970,6 @@
             cursor: pointer;
         }
 
-        .email-input-wrapper {
-            position: relative;
-            width: 100%;
-            display: none;
-        }
-
-        .email-input-wrapper.active {
-            display: block;
-        }
-
-        .email-input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-size: 13px;
-            outline: none;
-        }
-
-        .email-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-top: 2px;
-            box-shadow: var(--shadow);
-            z-index: 10;
-            display: none;
-        }
-
-        .email-suggestions.active {
-            display: block;
-        }
-
-        .suggestion-item {
-            padding: 8px 12px;
-            font-size: 12px;
-            cursor: pointer;
-            color: var(--text-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .suggestion-item:last-child {
-            border-bottom: none;
-        }
-
-        .suggestion-item:hover {
-            background: rgba(235, 42, 81, 0.08);
-            color: #eb2a51;
-        }
-
         .password-input-group {
             position: relative;
             width: 100%;
@@ -1029,8 +980,8 @@
             padding: 8px 36px 8px 12px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            background: var(--bg-color);
-            color: var(--text-color);
+            background: #FFFFFF;
+            color: #111827;
             font-size: 13px;
             outline: none;
         }
@@ -1043,7 +994,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--text-secondary);
+            color: #6B7280;
         }
 
         .toggle-password-btn svg {
@@ -1074,7 +1025,7 @@
         }
 
         .footer-logo {
-            height: 38px;
+            height: 48px;
             width: auto;
             object-fit: contain;
         }
@@ -1091,35 +1042,10 @@
             color: #eb2a51;
         }
 
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-size: 13px;
-            color: #9CA3AF;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            color: #FFFFFF;
-            text-decoration: none;
-        }
-
-        .contact-item svg {
-            width: 16px;
-            height: 16px;
-            stroke: #eb2a51;
-            fill: none;
-            stroke-width: 2;
-        }
-
         @media (max-width: 640px) {
-            header { padding: 6px 12px; }
+            header { padding: 8px 12px; }
+            .logo { height: 40px; }
             .denomination-grid { grid-template-columns: repeat(2, 1fr); }
-            .service-title { font-size: 13px; }
         }
     </style>
 </head>
@@ -1139,7 +1065,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="image/logo.png" alt="Logo Shop" class="logo" style="height: 30px;" onclick="switchPage('home'); toggleSidebar();">
+            <img src="image/logo.png" alt="Logo Shop" class="logo" style="height: 38px;" onclick="switchPage('home'); toggleSidebar();">
             <button class="close-menu-btn" onclick="toggleSidebar()">✕</button>
         </div>
         
@@ -1170,24 +1096,28 @@
                 Hỗ trợ
             </button>
             <div class="submenu" id="supportSubmenu">
-                <a href="https://facebook.com/DVCayThue247" target="_blank" class="nav-item">
-                    <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                    Facebook hỗ trợ
-                </a>
-                <a href="https://zalo.me/096696968" target="_blank" class="nav-item">
-                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    Zalo hỗ trợ
+                <!-- THAY THẾ CHỮ VÀ ICON FACEBOOK BẰNG NUT NẢY GIF -->
+                <a href="https://www.facebook.com/profile.php?id=61596203993256&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" style="text-decoration: none;">
+                    <img src="image/lienhe.gif" alt="Liên hệ Facebook" class="lienhe-gif-btn">
                 </a>
             </div>
 
             <div class="menu-category-title" style="margin-top: 8px;">Hệ thống</div>
-            <button class="nav-item" onclick="toggleTheme(); toggleSidebar();">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                Đổi giao diện
-            </button>
             <button class="nav-item" id="authNavBtn" onclick="handleAuthNavClick(); toggleSidebar();">
                 <!-- Render động -->
             </button>
+        </div>
+    </div>
+
+    <!-- POPUP YÊU CẦU ĐĂNG NHẬP -->
+    <div class="login-popup-overlay" id="loginPopupOverlay">
+        <div class="login-popup-card">
+            <div class="popup-title">Bạn chưa Đăng nhập!</div>
+            <div class="popup-sub">Vui lòng đăng nhập hoặc tạo tài khoản để sử dụng tính năng này.</div>
+            <div class="popup-actions">
+                <button class="popup-btn login" onclick="closePopupAndGo('login')">Đăng nhập</button>
+                <button class="popup-btn register" onclick="closePopupAndGo('register')">Đăng ký</button>
+            </div>
         </div>
     </div>
 
@@ -1195,7 +1125,6 @@
     <main>
         <!-- TRANG CHỦ -->
         <div id="home" class="page-view active">
-            <!-- Banner thay thế khung thông báo -->
             <img src="image/banner.png" alt="Banner" class="home-banner">
 
             <!-- DỊCH VỤ CÀY THUÊ -->
@@ -1226,6 +1155,18 @@
                         </button>
                     </div>
                 </div>
+
+                <!-- BỔ SUNG CÀY THUÊ GENSHIN -->
+                <div class="service-card">
+                    <img src="image/caythuegenshin.png" alt="Genshin Impact" class="service-banner">
+                    <div class="service-info-container">
+                        <div class="service-title">Dịch vụ Cày thuê Genshin</div>
+                        <div class="service-status">Sẵn Sàng</div>
+                        <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Genshin')">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- ACC GAME GIÁ RẺ -->
@@ -1234,13 +1175,56 @@
                 <div class="service-heading-line"></div>
             </div>
 
+            <!-- 1. LIÊN QUÂN -->
+            <div class="sub-game-heading">Liên Quân</div>
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIxdmF6dzF0MHFjc2twZWoxNncwbXo2MmYybWFoZXUydnVrcXkyYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mCRJDo24UvJMA/giphy.gif" alt="Cún Nhật" class="service-banner">
+                    <img src="image/accregchungsuc.png" alt="Acc Reg CS" class="service-banner">
                     <div class="service-info-container">
-                        <div class="service-title">Test (Dont Buy)</div>
-                        <div class="service-status">Sẵn Sàng</div>
-                        <button class="view-all-btn" onclick="alert('Xem danh mục Acc Game Giá Rẻ')">
+                        <div class="service-title">Acc Reg Trắng thông tin LV16 (Cày chung sức)</div>
+                        <div class="service-quantity">Số lượng: <span>0</span></div>
+                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Reg')">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ROBLOX -->
+            <div class="sub-game-heading">Roblox</div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="image/accbloxfruits.webp" alt="Acc Blox Fruits" class="service-banner">
+                    <div class="service-info-container">
+                        <div class="service-title">Acc Blox Fruits tự chọn</div>
+                        <div class="service-quantity">Số lượng: <span>0</span></div>
+                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Blox Fruits')">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="image/accstealanegg.png" alt="Acc Steal An Egg" class="service-banner">
+                    <div class="service-info-container">
+                        <div class="service-title">Acc Steal An Egg</div>
+                        <div class="service-quantity">Số lượng: <span>0</span></div>
+                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Steal An Egg')">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. FREEFIRE -->
+            <div class="sub-game-heading">Free Fire</div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="image/acccloneff.png" alt="Acc Clone FF" class="service-banner">
+                    <div class="service-info-container">
+                        <div class="service-title">Acc Clone FF tự chọn</div>
+                        <div class="service-quantity">Số lượng: <span>0</span></div>
+                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Clone FF')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1252,23 +1236,19 @@
         <div id="register" class="page-view">
             <div class="auth-card-3d">
                 <div class="auth-title-3d">Đăng Ký</div>
-                
                 <div class="input-group-3d">
                     <label class="label-3d">Tên đăng nhập (Username):</label>
                     <input type="text" class="input-3d" id="regUsername" placeholder="Ví dụ: user_123" oninput="validateUsernameInput(this)">
                     <div class="error-msg" id="regUsernameError">Tên đăng nhập tối đa 12 ký tự, không dấu, chỉ dùng . _ và không có dấu . ở cuối.</div>
                 </div>
-
                 <div class="input-group-3d">
                     <label class="label-3d">Email (Không bắt buộc):</label>
                     <input type="email" class="input-3d" placeholder="nhapemail@gmail.com">
                 </div>
-
                 <div class="input-group-3d">
                     <label class="label-3d">Mật khẩu:</label>
                     <input type="password" class="input-3d" placeholder="••••••••">
                 </div>
-
                 <button class="btn-auth-3d" onclick="submitRegister()">Đăng ký tài khoản</button>
             </div>
         </div>
@@ -1277,17 +1257,14 @@
         <div id="login" class="page-view">
             <div class="auth-card-3d">
                 <div class="auth-title-3d">Đăng Nhập</div>
-                
                 <div class="input-group-3d">
                     <label class="label-3d">Tên đăng nhập hoặc Email:</label>
                     <input type="text" class="input-3d" id="loginUser" placeholder="Nhập user hoặc email">
                 </div>
-
                 <div class="input-group-3d">
                     <label class="label-3d">Mật khẩu:</label>
                     <input type="password" class="input-3d" id="loginPass" placeholder="••••••••">
                 </div>
-
                 <button class="btn-auth-3d" onclick="submitLogin()">Đăng nhập ngay</button>
             </div>
         </div>
@@ -1296,18 +1273,14 @@
         <div id="topup" class="page-view">
             <div class="page-card">
                 <h2>Nạp Tiền Tài Khoản</h2>
-                
                 <div class="topup-tabs">
                     <button class="topup-tab-btn active" onclick="switchTopupTab('bank')">Thanh toán Ngân hàng</button>
                     <button class="topup-tab-btn" onclick="switchTopupTab('card')">Thanh toán Thẻ cào</button>
                 </div>
-
-                <!-- NGÂN HÀNG -->
                 <div id="topupBankSection" class="topup-content-section active">
-                    <div class="qr-box-square" style="font-size: 13px; font-weight: 600; color: #eb2a51;">
+                    <div class="qr-box-square">
                         Ấn Tạo đơn nạp tiền để hiện mã QR chuyển khoản
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Chọn mệnh giá nạp:</label>
                         <div class="denomination-grid">
@@ -1318,7 +1291,6 @@
                             <button class="denom-btn" onclick="selectDenom(this, 500000)">500.000₫</button>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Nội dung chuyển khoản (Không được xoá):</label>
                         <div class="transfer-content-box">
@@ -1326,74 +1298,46 @@
                             <button class="copy-btn" onclick="copyTransferContent()">Copy</button>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Mã đơn nạp:</label>
                         <input type="text" class="input-field" id="bankOrderCode" placeholder="Bấm nút tạo đơn để nhận mã" readonly>
                     </div>
-
                     <button class="action-submit-btn" onclick="createDepositOrder('bank')">Tạo đơn nạp tiền</button>
-                    <div class="toast-noti" id="bankToast">Tạo đơn nạp thành công!</div>
                 </div>
-
-                <!-- THẺ CÀO -->
                 <div id="topupCardSection" class="topup-content-section">
                     <div class="form-group">
                         <label class="form-label">Chọn nhà mạng:</label>
-                        <select class="select-field" id="cardTelco">
+                        <select class="select-field">
                             <option value="viettel">Viettel</option>
                             <option value="mobifone">Mobifone</option>
                             <option value="vinaphone">Vinaphone</option>
-                            <option value="zing">Zing</option>
-                            <option value="garena">Garena</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Chọn mệnh giá:</label>
-                        <div class="denomination-grid">
-                            <button class="denom-btn active" onclick="selectDenom(this, 10000)">10.000₫</button>
-                            <button class="denom-btn" onclick="selectDenom(this, 50000)">50.000₫</button>
-                            <button class="denom-btn" onclick="selectDenom(this, 100000)">100.000₫</button>
-                            <button class="denom-btn" onclick="selectDenom(this, 200000)">200.000₫</button>
-                            <button class="denom-btn" onclick="selectDenom(this, 500000)">500.000₫</button>
-                        </div>
-                    </div>
-
                     <div class="form-group">
                         <label class="form-label">Số Seri thẻ cào:</label>
-                        <input type="text" class="input-field" id="cardSerial" placeholder="Nhập số seri thẻ...">
+                        <input type="text" class="input-field" placeholder="Nhập số seri...">
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Mã thẻ cào:</label>
-                        <input type="text" class="input-field" id="cardPin" placeholder="Nhập mã thẻ cào...">
+                        <input type="text" class="input-field" placeholder="Nhập mã thẻ...">
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Mã đơn nạp:</label>
-                        <input type="text" class="input-field" id="cardOrderCode" placeholder="Bấm nút tạo đơn để nhận mã" readonly>
-                    </div>
-
                     <button class="action-submit-btn" onclick="createDepositOrder('card')">Tạo đơn nạp tiền</button>
-                    <div class="toast-noti" id="cardToast">Tạo đơn nạp thành công!</div>
                 </div>
             </div>
         </div>
 
-        <!-- LỊCH SỬ ĐƠN (GIAO DIỆN CHUẨN IMAGE_9.PNG) -->
+        <!-- LỊCH SỬ ĐƠN -->
         <div id="orders" class="page-view">
             <div class="order-stats-container">
                 <div class="order-stat-card c1">
                     <div class="stat-icon-box">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
                     </div>
                     <div class="stat-info">
                         <div class="stat-label">Tài Khoản Đã Mua</div>
                         <div class="stat-value">0</div>
                     </div>
                 </div>
-
                 <div class="order-stat-card c2">
                     <div class="stat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
@@ -1403,7 +1347,6 @@
                         <div class="stat-value">0 đ</div>
                     </div>
                 </div>
-
                 <div class="order-stat-card c3">
                     <div class="stat-icon-box">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -1414,9 +1357,8 @@
                     </div>
                 </div>
             </div>
-
             <div class="order-empty-box">
-                <svg class="empty-illustration" viewBox="0 0 24 24" fill="none" stroke="#eb2a51" stroke-width="1.5"><path d="M20 12V8H4v4"></path><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+                <svg class="empty-illustration" viewBox="0 0 24 24" fill="none" stroke="#eb2a51" stroke-width="1.5"><path d="M20 12V8H4v4"></path><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path></svg>
                 <div class="empty-title">Bạn chưa mua tài khoản nào!</div>
                 <div class="empty-subtitle">Hãy khám phá và mua tài khoản ngay hôm nay</div>
                 <button class="buy-now-btn" onclick="switchPage('home')">Mua Ngay</button>
@@ -1425,9 +1367,7 @@
 
         <!-- HỒ SƠ -->
         <div id="profile" class="page-view">
-            <div id="profileContentArea">
-                <!-- Render động dựa vào trạng thái đăng nhập -->
-            </div>
+            <div id="profileContentArea"></div>
         </div>
     </main>
 
@@ -1437,28 +1377,12 @@
             <img src="image/logo.png" alt="Logo Shop" class="footer-logo">
             <div class="footer-desc">Shop dvcaythue247 chuyên cung cấp acc LQ, FF, Roblox giá rẻ. Các dịch vụ cày thuê đa dạng game phổ biến.</div>
             <div class="footer-tagline">Uy tín - Giá rẻ - Bảo mật</div>
-            <div class="footer-contact">
-                <span>Liên hệ CSKH:</span>
-                <a href="https://facebook.com/DVCayThue247" target="_blank" class="contact-item">
-                    <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                    Facebook: DVCay Thue 247
-                </a>
-                <a href="https://zalo.me/096696968" target="_blank" class="contact-item">
-                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    Zalo: 096696968
-                </a>
-            </div>
         </div>
     </footer>
 
     <script>
         let isLoggedIn = false;
         let currentUser = { username: "luonvuituoi7878", balance: "500,000đ" };
-
-        (function() {
-            const savedTheme = localStorage.getItem('web_theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        })();
 
         function updateAuthState() {
             const headerRight = document.getElementById('headerRightContent');
@@ -1468,11 +1392,7 @@
             if (isLoggedIn) {
                 headerRight.innerHTML = `
                     <button class="wallet-btn" onclick="switchPage('topup')">
-                        <svg class="wallet-icon" viewBox="0 0 24 24">
-                            <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
-                            <path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path>
-                            <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
-                        </svg>
+                        <svg class="wallet-icon" viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path></svg>
                         <span class="balance-text">${currentUser.balance}</span>
                     </button>
                     <button class="avatar-btn" onclick="switchPage('profile')">
@@ -1511,7 +1431,7 @@
                 sidebarUser.innerHTML = `
                     <div class="sidebar-user">
                         <div class="sidebar-user-info">
-                            <div class="username" style="color: var(--text-secondary);">Chưa đăng nhập tài khoản</div>
+                            <div class="username" style="color: #6B7280;">Chưa đăng nhập tài khoản</div>
                         </div>
                     </div>
                 `;
@@ -1530,7 +1450,7 @@
             if (!isLoggedIn) {
                 profileArea.innerHTML = `
                     <div class="profile-container">
-                        <div class="profile-username" style="color: var(--text-secondary); margin-bottom: 16px;">Bạn chưa đăng nhập tài khoản</div>
+                        <div class="profile-username" style="color: #6B7280; margin-bottom: 16px;">Bạn chưa đăng nhập tài khoản</div>
                         <button class="buy-now-btn" onclick="switchPage('login')">Đăng nhập ngay</button>
                     </div>
                 `;
@@ -1546,30 +1466,11 @@
                     <div class="profile-section-group">
                         <div class="profile-bar">
                             <div class="profile-bar-row">
-                                <span class="profile-bar-label">Liên kết email</span>
-                                <div class="profile-bar-status-area">
-                                    <span class="profile-status-text" id="emailStatusText">Chưa liên kết</span>
-                                    <button class="link-action-btn" id="linkToggleBtn" onclick="toggleEmailInput()">Liên kết</button>
-                                </div>
-                            </div>
-                            <div class="email-input-wrapper" id="emailInputWrapper">
-                                <input type="text" class="email-input" id="emailInput" placeholder="Nhập địa chỉ email của bạn..." oninput="handleEmailInput(this)">
-                                <div class="email-suggestions" id="emailSuggestions">
-                                    <div class="suggestion-item" onclick="selectSuggestion('gmail.com')">@gmail.com</div>
-                                    <div class="suggestion-item" onclick="selectSuggestion('outlook.com')">@outlook.com</div>
-                                    <div class="suggestion-item" onclick="selectSuggestion('hotmail.com')">@hotmail.com</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Thanh bar mật khẩu mới yêu cầu -->
-                        <div class="profile-bar">
-                            <div class="profile-bar-row">
                                 <span class="profile-bar-label">Mật khẩu hiện tại</span>
                                 <div class="profile-bar-status-area">
                                     <div class="password-input-group" style="width: 160px;">
                                         <input type="password" class="password-input" id="currentPassInput" value="12345678" readonly>
-                                        <button class="toggle-password-btn" onclick="togglePasswordVisibility('currentPassInput', this)">
+                                        <button class="toggle-password-btn" onclick="togglePasswordVisibility('currentPassInput')">
                                             <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                         </button>
                                     </div>
@@ -1578,7 +1479,7 @@
                         </div>
 
                         <div class="profile-bar">
-                            <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--accent);">Đổi mật khẩu</div>
+                            <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: #eb2a51;">Đổi mật khẩu</div>
                             <div class="form-group" style="margin-bottom: 8px;">
                                 <label class="form-label">Nhập mật khẩu cũ</label>
                                 <input type="password" class="input-field" placeholder="Mật khẩu cũ..." style="margin-bottom: 0;">
@@ -1592,6 +1493,33 @@
                     </div>
                 </div>
             `;
+        }
+
+        function switchPage(pageId) {
+            // KIỂM TRA POPUP ĐĂNG NHẬP KHI CHUYỂN TAB KHÁC TRANG CHỦ MÀ CHƯA ĐĂNG NHẬP
+            if (!isLoggedIn && pageId !== 'home' && pageId !== 'login' && pageId !== 'register') {
+                document.getElementById('loginPopupOverlay').classList.add('active');
+                return;
+            }
+
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => item.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closePopupAndGo(targetPage) {
+            document.getElementById('loginPopupOverlay').classList.remove('active');
+            switchPage(targetPage);
         }
 
         function handleAuthNavClick() {
@@ -1613,35 +1541,9 @@
         }
 
         function toggleSubmenu(event) {
-            const submenu = document.getElementById('supportSubmenu');
-            submenu.classList.toggle('open');
+            document.getElementById('supportSubmenu').classList.toggle('open');
         }
 
-        function switchPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-
-            document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => item.classList.remove('active'));
-            const activeNav = document.getElementById('nav-' + pageId);
-            if (activeNav) {
-                activeNav.classList.add('active');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('web_theme', newTheme);
-        }
-
-        // Validation Username
         function validateUsernameInput(input) {
             const err = document.getElementById('regUsernameError');
             let val = input.value;
@@ -1684,13 +1586,9 @@
             switchPage('home');
         }
 
-        function togglePasswordVisibility(inputId, btn) {
+        function togglePasswordVisibility(inputId) {
             const input = document.getElementById(inputId);
-            if (input.type === 'password') {
-                input.type = 'text';
-            } else {
-                input.type = 'password';
-            }
+            input.type = input.type === 'password' ? 'text' : 'password';
         }
 
         function switchTopupTab(type) {
@@ -1707,77 +1605,22 @@
         }
 
         function selectDenom(btn, amount) {
-            const parent = btn.parentElement;
-            parent.querySelectorAll('.denom-btn').forEach(b => b.classList.remove('active'));
+            btn.parentElement.querySelectorAll('.denom-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
 
         function copyTransferContent() {
             const text = document.getElementById('transferContentText').innerText;
             navigator.clipboard.writeText(text);
-            alert('Đã copy nội dung chuyển khoản!');
-        }
-
-        function generateRandomCode() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let result = '#';
-            for (let i = 0; i < 8; i++) {
-                result += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return result;
+            alert('Đã copy nội dung!');
         }
 
         function createDepositOrder(type) {
-            const randomCode = generateRandomCode();
+            const randomCode = '#' + Math.random().toString(36).substr(2, 8).toUpperCase();
             if (type === 'bank') {
                 document.getElementById('bankOrderCode').value = randomCode;
-                const toast = document.getElementById('bankToast');
-                toast.style.display = 'block';
-                setTimeout(() => { toast.style.display = 'none'; }, 3000);
-            } else {
-                document.getElementById('cardOrderCode').value = randomCode;
-                const toast = document.getElementById('cardToast');
-                toast.style.display = 'block';
-                setTimeout(() => { toast.style.display = 'none'; }, 3000);
             }
-        }
-
-        function toggleEmailInput() {
-            const wrapper = document.getElementById('emailInputWrapper');
-            const btn = document.getElementById('linkToggleBtn');
-            const statusText = document.getElementById('emailStatusText');
-
-            if (statusText.classList.contains('linked')) {
-                statusText.textContent = 'Chưa liên kết';
-                statusText.classList.remove('linked');
-                btn.textContent = 'Liên kết';
-                wrapper.classList.remove('active');
-            } else {
-                wrapper.classList.toggle('active');
-            }
-        }
-
-        function handleEmailInput(input) {
-            const suggestions = document.getElementById('emailSuggestions');
-            if (input.value.includes('@')) {
-                suggestions.classList.add('active');
-            } else {
-                suggestions.classList.remove('active');
-            }
-        }
-
-        function selectSuggestion(domain) {
-            const input = document.getElementById('emailInput');
-            const parts = input.value.split('@');
-            input.value = parts[0] + '@' + domain;
-            document.getElementById('emailSuggestions').classList.remove('active');
-
-            document.getElementById('emailInputWrapper').classList.remove('active');
-            const statusText = document.getElementById('emailStatusText');
-            statusText.textContent = input.value;
-            statusText.classList.add('linked');
-            document.getElementById('linkToggleBtn').textContent = 'Đổi liên kết';
-            alert('Liên kết email thành công!');
+            alert('Đã tạo đơn nạp tiền thành công!');
         }
 
         updateAuthState();
