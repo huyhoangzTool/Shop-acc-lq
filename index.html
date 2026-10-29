@@ -119,10 +119,12 @@
             stroke-linejoin: round;
         }
 
+        /* NEON EFFECT CHO SỐ DƯ */
         .balance-text {
             font-family: 'Press Start 2P', monospace;
             font-size: 10px;
             color: #eb2a51;
+            text-shadow: 0 0 5px rgba(235, 42, 81, 0.6), 0 0 10px rgba(235, 42, 81, 0.4), 0 0 15px rgba(235, 42, 81, 0.2);
             animation: balanceShake 1.5s ease-in-out infinite;
         }
 
@@ -291,6 +293,7 @@
             font-size: 10px;
             color: var(--accent);
             font-family: 'Press Start 2P', monospace;
+            text-shadow: 0 0 4px rgba(235, 42, 81, 0.5);
             margin-top: 4px;
         }
 
@@ -383,31 +386,14 @@
         }
 
         /* TRANG CHỦ */
-        .notice-box {
-            border: 2px solid #eb2a51;
-            border-radius: 12px;
-            padding: 20px;
-            background: var(--card-bg);
-            box-shadow: var(--shadow);
-            margin-bottom: 24px;
-        }
-
-        .notice-title {
-            color: #eb2a51;
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .notice-content {
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--text-color);
-        }
-
-        .notice-content .highlight {
-            color: #eb2a51;
-            font-weight: 600;
+        .home-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--shadow-3d);
+            margin-bottom: 28px;
+            object-fit: cover;
+            display: block;
         }
 
         .service-heading-container {
@@ -434,7 +420,7 @@
             border-radius: 2px;
         }
 
-        /* DỊCH VỤ CÀY THUÊ & ACC GAME GIÁ RẺ */
+        /* DỊCH VỤ CÀY THUÊ & ACC GAME KHÔNG VIỀN, HIỆU ỨNG 3D MỀM MẠI */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -442,11 +428,11 @@
         }
 
         .service-card {
-            border: 1.5px solid #eb2a51;
-            border-radius: 12px;
+            border: none;
+            border-radius: 16px;
             background: var(--card-bg);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-3d);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
@@ -455,7 +441,7 @@
         }
 
         .service-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .service-banner {
@@ -464,7 +450,6 @@
             aspect-ratio: 16/9;
             object-fit: cover;
             display: block;
-            border-bottom: 1px solid var(--border-color);
         }
 
         .service-info-container {
@@ -505,8 +490,8 @@
             object-fit: contain;
         }
 
-        /* TRANG ĐĂNG KÝ (REGISTER 3D EFFECT) */
-        .register-card-3d {
+        /* 3D AUTH CARDS (ĐĂNG KÝ & ĐĂNG NHẬP) */
+        .auth-card-3d {
             max-width: 440px;
             margin: 20px auto;
             background: var(--card-bg);
@@ -518,7 +503,7 @@
             flex-direction: column;
         }
 
-        .register-title {
+        .auth-title-3d {
             text-align: center;
             font-size: 22px;
             font-weight: 800;
@@ -567,7 +552,7 @@
             display: none;
         }
 
-        .btn-register-3d {
+        .btn-auth-3d {
             width: 100%;
             background: #eb2a51;
             color: #FFFFFF;
@@ -582,7 +567,7 @@
             margin-top: 8px;
         }
 
-        .btn-register-3d:hover {
+        .btn-auth-3d:hover {
             background: #d02044;
             transform: translateY(-1px);
         }
@@ -775,6 +760,111 @@
             animation: fadeIn 0.25s ease;
         }
 
+        /* LỊCH SỬ ĐƠN (CHUẨN ẢNH IMAGE_9.PNG) */
+        .order-stats-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .order-stat-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .order-stat-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+        }
+
+        .order-stat-card.c1::before { background-color: #eb2a51; }
+        .order-stat-card.c2::before { background-color: #10B981; }
+        .order-stat-card.c3::before { background-color: #F59E0B; }
+
+        .stat-icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-stat-card.c1 .stat-icon-box { background: rgba(235, 42, 81, 0.1); color: #eb2a51; }
+        .order-stat-card.c2 .stat-icon-box { background: rgba(16, 185, 129, 0.1); color: #10B981; }
+        .order-stat-card.c3 .stat-icon-box { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
+
+        .stat-info .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .stat-info .stat-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-color);
+        }
+
+        .order-empty-box {
+            background: var(--card-bg);
+            border: 1px dashed var(--border-color);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .empty-illustration {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px auto;
+            opacity: 0.6;
+        }
+
+        .empty-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .empty-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .buy-now-btn {
+            background: #eb2a51;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(235, 42, 81, 0.3);
+        }
+
+        .buy-now-btn:hover {
+            background: #d02044;
+        }
+
         /* HỒ SƠ */
         .profile-container {
             max-width: 500px;
@@ -811,7 +901,15 @@
             font-size: 11px;
             font-weight: 700;
             color: #eb2a51;
+            text-shadow: 0 0 6px rgba(235, 42, 81, 0.5);
             margin-bottom: 20px;
+        }
+
+        .profile-section-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .profile-bar {
@@ -921,6 +1019,41 @@
             color: #eb2a51;
         }
 
+        .password-input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 8px 36px 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .toggle-password-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
         /* FOOTER */
         footer {
             background-color: #000000;
@@ -995,7 +1128,7 @@
     <!-- HEADER -->
     <header>
         <div class="header-left">
-            <img src="IMG_0702.png" alt="Logo Shop" class="logo" onclick="switchPage('home')">
+            <img src="image/logo.png" alt="Logo Shop" class="logo" onclick="switchPage('home')">
         </div>
         <div class="header-right" id="headerRightContent">
             <!-- Render động -->
@@ -1006,7 +1139,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="IMG_0702.png" alt="Logo Shop" class="logo" style="height: 30px;" onclick="switchPage('home'); toggleSidebar();">
+            <img src="image/logo.png" alt="Logo Shop" class="logo" style="height: 30px;" onclick="switchPage('home'); toggleSidebar();">
             <button class="close-menu-btn" onclick="toggleSidebar()">✕</button>
         </div>
         
@@ -1027,10 +1160,6 @@
             <button class="nav-item" id="nav-orders" onclick="switchPage('orders'); toggleSidebar();">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                 Lịch sử đơn
-            </button>
-            <button class="nav-item" id="nav-cashflow" onclick="switchPage('cashflow'); toggleSidebar();">
-                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><polyline points="17 5 12 1 7 5"></polyline><polyline points="7 19 12 23 17 19"></polyline></svg>
-                Lịch sử dòng tiền
             </button>
             <button class="nav-item" id="nav-profile" onclick="switchPage('profile'); toggleSidebar();">
                 <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -1066,13 +1195,8 @@
     <main>
         <!-- TRANG CHỦ -->
         <div id="home" class="page-view active">
-            <div class="notice-box">
-                <div class="notice-title">Thông Báo!</div>
-                <div class="notice-content">
-                    Đây là Demo Web Shop Acc LQM, FF,…<br>
-                    Toàn bộ source code thuộc <span class="highlight">@luonvuituoi7878</span>, mua source code web shop acc, web tài nguyên mmo, web dvmxh giá rẻ liên hệ Telegram: <span class="highlight">@luonvuituoi7878</span>
-                </div>
-            </div>
+            <!-- Banner thay thế khung thông báo -->
+            <img src="image/banner.png" alt="Banner" class="home-banner">
 
             <!-- DỊCH VỤ CÀY THUÊ -->
             <div class="service-heading-container">
@@ -1080,31 +1204,31 @@
                 <div class="service-heading-line"></div>
             </div>
 
-            <div class="services-grid">
+            <div class="services-grid" style="margin-bottom: 28px;">
                 <div class="service-card">
-                    <img src="IMG_0701.jpeg" alt="Chung Sức" class="service-banner">
+                    <img src="image/chungsuc.jpeg" alt="Chung Sức" class="service-banner">
                     <div class="service-info-container">
                         <div class="service-title">Dịch vụ cày thuê Chung Sức Liên Quân</div>
                         <div class="service-status">Sẵn Sàng</div>
                         <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Liên Quân')">
-                            <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <img src="IMG_0717.png" alt="Blox Fruits" class="service-banner">
+                    <img src="image/caythuebloxfruits.png" alt="Blox Fruits" class="service-banner">
                     <div class="service-info-container">
                         <div class="service-title">Dịch vụ cày thuê Blox Fruits theo Y/C</div>
                         <div class="service-status">Sẵn Sàng</div>
                         <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Blox Fruits')">
-                            <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- KHU ACC GAME GIÁ RẺ -->
+            <!-- ACC GAME GIÁ RẺ -->
             <div class="service-heading-container">
                 <div class="service-heading">ACC GAME GIÁ RẺ</div>
                 <div class="service-heading-line"></div>
@@ -1112,13 +1236,12 @@
 
             <div class="services-grid">
                 <div class="service-card">
-                    <!-- Ảnh GIF cún Nhật phong cách cute -->
                     <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIxdmF6dzF0MHFjc2twZWoxNncwbXo2MmYybWFoZXUydnVrcXkyYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mCRJDo24UvJMA/giphy.gif" alt="Cún Nhật" class="service-banner">
                     <div class="service-info-container">
                         <div class="service-title">Test (Dont Buy)</div>
                         <div class="service-status">Sẵn Sàng</div>
                         <button class="view-all-btn" onclick="alert('Xem danh mục Acc Game Giá Rẻ')">
-                            <img src="IMG_0699.gif" alt="Xem Tất Cả" class="view-all-gif">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
                 </div>
@@ -1127,8 +1250,8 @@
 
         <!-- TRANG ĐĂNG KÝ -->
         <div id="register" class="page-view">
-            <div class="register-card-3d">
-                <div class="register-title">Đăng Ký</div>
+            <div class="auth-card-3d">
+                <div class="auth-title-3d">Đăng Ký</div>
                 
                 <div class="input-group-3d">
                     <label class="label-3d">Tên đăng nhập (Username):</label>
@@ -1146,7 +1269,26 @@
                     <input type="password" class="input-3d" placeholder="••••••••">
                 </div>
 
-                <button class="btn-register-3d" onclick="submitRegister()">Đăng ký tài khoản</button>
+                <button class="btn-auth-3d" onclick="submitRegister()">Đăng ký tài khoản</button>
+            </div>
+        </div>
+
+        <!-- TRANG ĐĂNG NHẬP -->
+        <div id="login" class="page-view">
+            <div class="auth-card-3d">
+                <div class="auth-title-3d">Đăng Nhập</div>
+                
+                <div class="input-group-3d">
+                    <label class="label-3d">Tên đăng nhập hoặc Email:</label>
+                    <input type="text" class="input-3d" id="loginUser" placeholder="Nhập user hoặc email">
+                </div>
+
+                <div class="input-group-3d">
+                    <label class="label-3d">Mật khẩu:</label>
+                    <input type="password" class="input-3d" id="loginPass" placeholder="••••••••">
+                </div>
+
+                <button class="btn-auth-3d" onclick="submitLogin()">Đăng nhập ngay</button>
             </div>
         </div>
 
@@ -1162,8 +1304,8 @@
 
                 <!-- NGÂN HÀNG -->
                 <div id="topupBankSection" class="topup-content-section active">
-                    <div class="qr-box-square">
-                        QR BANKING CỦA BẠN TẠI ĐÂY
+                    <div class="qr-box-square" style="font-size: 13px; font-weight: 600; color: #eb2a51;">
+                        Ấn Tạo đơn nạp tiền để hiện mã QR chuyển khoản
                     </div>
 
                     <div class="form-group">
@@ -1239,46 +1381,52 @@
             </div>
         </div>
 
-        <!-- LỊCH SỬ ĐƠN -->
+        <!-- LỊCH SỬ ĐƠN (GIAO DIỆN CHUẨN IMAGE_9.PNG) -->
         <div id="orders" class="page-view">
-            <div class="page-card">
-                <h2>Lịch Sử Đơn Hàng</h2>
-                <p>Danh sách các tài khoản game Clone LQM, Free Fire, Garena bạn đã mua gần đây.</p>
-            </div>
-        </div>
+            <div class="order-stats-container">
+                <div class="order-stat-card c1">
+                    <div class="stat-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-label">Tài Khoản Đã Mua</div>
+                        <div class="stat-value">0</div>
+                    </div>
+                </div>
 
-        <!-- LỊCH SỬ DÒNG TIỀN -->
-        <div id="cashflow" class="page-view">
-            <div class="page-card">
-                <h2>Lịch Sử Dòng Tiền</h2>
-                <p>Thống kê chi tiết biến động số dư, giao dịch nạp tiền và mua hàng.</p>
+                <div class="order-stat-card c2">
+                    <div class="stat-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-label">Số Tiền Đã Tiêu</div>
+                        <div class="stat-value">0 đ</div>
+                    </div>
+                </div>
+
+                <div class="order-stat-card c3">
+                    <div class="stat-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-label">Đã Tiêu Trong Tháng</div>
+                        <div class="stat-value">0 đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-empty-box">
+                <svg class="empty-illustration" viewBox="0 0 24 24" fill="none" stroke="#eb2a51" stroke-width="1.5"><path d="M20 12V8H4v4"></path><path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+                <div class="empty-title">Bạn chưa mua tài khoản nào!</div>
+                <div class="empty-subtitle">Hãy khám phá và mua tài khoản ngay hôm nay</div>
+                <button class="buy-now-btn" onclick="switchPage('home')">Mua Ngay</button>
             </div>
         </div>
 
         <!-- HỒ SƠ -->
         <div id="profile" class="page-view">
-            <div class="profile-container">
-                <img src="IMG_0698.jpeg" alt="Avatar" class="profile-avatar-large">
-                <div class="profile-username">luonvuituoi7878</div>
-                <div class="profile-balance">500,000đ</div>
-
-                <div class="profile-bar">
-                    <div class="profile-bar-row">
-                        <span class="profile-bar-label">Liên kết email</span>
-                        <div class="profile-bar-status-area">
-                            <span class="profile-status-text" id="emailStatusText">Chưa liên kết</span>
-                            <button class="link-action-btn" id="linkToggleBtn" onclick="toggleEmailInput()">Liên kết</button>
-                        </div>
-                    </div>
-                    <div class="email-input-wrapper" id="emailInputWrapper">
-                        <input type="text" class="email-input" id="emailInput" placeholder="Nhập địa chỉ email của bạn..." oninput="handleEmailInput(this)">
-                        <div class="email-suggestions" id="emailSuggestions">
-                            <div class="suggestion-item" onclick="selectSuggestion('gmail.com')">@gmail.com</div>
-                            <div class="suggestion-item" onclick="selectSuggestion('outlook.com')">@outlook.com</div>
-                            <div class="suggestion-item" onclick="selectSuggestion('hotmail.com')">@hotmail.com</div>
-                        </div>
-                    </div>
-                </div>
+            <div id="profileContentArea">
+                <!-- Render động dựa vào trạng thái đăng nhập -->
             </div>
         </div>
     </main>
@@ -1286,7 +1434,7 @@
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <img src="IMG_0702.png" alt="Logo Shop" class="footer-logo">
+            <img src="image/logo.png" alt="Logo Shop" class="footer-logo">
             <div class="footer-desc">Shop dvcaythue247 chuyên cung cấp acc LQ, FF, Roblox giá rẻ. Các dịch vụ cày thuê đa dạng game phổ biến.</div>
             <div class="footer-tagline">Uy tín - Giá rẻ - Bảo mật</div>
             <div class="footer-contact">
@@ -1305,6 +1453,7 @@
 
     <script>
         let isLoggedIn = false;
+        let currentUser = { username: "luonvuituoi7878", balance: "500,000đ" };
 
         (function() {
             const savedTheme = localStorage.getItem('web_theme') || 'light';
@@ -1324,10 +1473,10 @@
                             <path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path>
                             <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path>
                         </svg>
-                        <span class="balance-text">500,000đ</span>
+                        <span class="balance-text">${currentUser.balance}</span>
                     </button>
                     <button class="avatar-btn" onclick="switchPage('profile')">
-                        <img src="IMG_0698.jpeg" alt="Avatar" class="header-avatar">
+                        <img src="image/avt.jpeg" alt="Avatar" class="header-avatar">
                     </button>
                     <button class="menu-toggle-btn" onclick="toggleSidebar()">
                         <span></span><span></span><span></span>
@@ -1336,10 +1485,10 @@
 
                 sidebarUser.innerHTML = `
                     <div class="sidebar-user" onclick="switchPage('profile'); toggleSidebar();" style="cursor: pointer;">
-                        <img src="IMG_0698.jpeg" alt="Avatar">
+                        <img src="image/avt.jpeg" alt="Avatar">
                         <div class="sidebar-user-info">
-                            <div class="username">luonvuituoi7878</div>
-                            <div class="userbal">500,000đ</div>
+                            <div class="username">${currentUser.username}</div>
+                            <div class="userbal">${currentUser.balance}</div>
                         </div>
                     </div>
                 `;
@@ -1351,7 +1500,7 @@
             } else {
                 headerRight.innerHTML = `
                     <div class="auth-actions">
-                        <button class="auth-btn" onclick="switchPage('register')">Đăng nhập</button>
+                        <button class="auth-btn" onclick="switchPage('login')">Đăng nhập</button>
                         <button class="auth-btn primary" onclick="switchPage('register')">Đăng ký</button>
                     </div>
                     <button class="menu-toggle-btn" onclick="toggleSidebar()">
@@ -1372,6 +1521,77 @@
                     Đăng nhập / Đăng ký
                 `;
             }
+
+            renderProfilePage();
+        }
+
+        function renderProfilePage() {
+            const profileArea = document.getElementById('profileContentArea');
+            if (!isLoggedIn) {
+                profileArea.innerHTML = `
+                    <div class="profile-container">
+                        <div class="profile-username" style="color: var(--text-secondary); margin-bottom: 16px;">Bạn chưa đăng nhập tài khoản</div>
+                        <button class="buy-now-btn" onclick="switchPage('login')">Đăng nhập ngay</button>
+                    </div>
+                `;
+                return;
+            }
+
+            profileArea.innerHTML = `
+                <div class="profile-container">
+                    <img src="image/avt.jpeg" alt="Avatar" class="profile-avatar-large">
+                    <div class="profile-username">${currentUser.username}</div>
+                    <div class="profile-balance">${currentUser.balance}</div>
+
+                    <div class="profile-section-group">
+                        <div class="profile-bar">
+                            <div class="profile-bar-row">
+                                <span class="profile-bar-label">Liên kết email</span>
+                                <div class="profile-bar-status-area">
+                                    <span class="profile-status-text" id="emailStatusText">Chưa liên kết</span>
+                                    <button class="link-action-btn" id="linkToggleBtn" onclick="toggleEmailInput()">Liên kết</button>
+                                </div>
+                            </div>
+                            <div class="email-input-wrapper" id="emailInputWrapper">
+                                <input type="text" class="email-input" id="emailInput" placeholder="Nhập địa chỉ email của bạn..." oninput="handleEmailInput(this)">
+                                <div class="email-suggestions" id="emailSuggestions">
+                                    <div class="suggestion-item" onclick="selectSuggestion('gmail.com')">@gmail.com</div>
+                                    <div class="suggestion-item" onclick="selectSuggestion('outlook.com')">@outlook.com</div>
+                                    <div class="suggestion-item" onclick="selectSuggestion('hotmail.com')">@hotmail.com</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Thanh bar mật khẩu mới yêu cầu -->
+                        <div class="profile-bar">
+                            <div class="profile-bar-row">
+                                <span class="profile-bar-label">Mật khẩu hiện tại</span>
+                                <div class="profile-bar-status-area">
+                                    <div class="password-input-group" style="width: 160px;">
+                                        <input type="password" class="password-input" id="currentPassInput" value="12345678" readonly>
+                                        <button class="toggle-password-btn" onclick="togglePasswordVisibility('currentPassInput', this)">
+                                            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-bar">
+                            <div style="font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--accent);">Đổi mật khẩu</div>
+                            <div class="form-group" style="margin-bottom: 8px;">
+                                <label class="form-label">Nhập mật khẩu cũ</label>
+                                <input type="password" class="input-field" placeholder="Mật khẩu cũ..." style="margin-bottom: 0;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 12px;">
+                                <label class="form-label">Nhập mật khẩu mới</label>
+                                <input type="password" class="input-field" placeholder="Mật khẩu mới..." style="margin-bottom: 0;">
+                            </div>
+                            <button class="link-action-btn" style="width: 100%; padding: 10px;" onclick="alert('Đổi mật khẩu thành công!')">Cập nhật mật khẩu</button>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
 
         function handleAuthNavClick() {
@@ -1379,8 +1599,9 @@
                 isLoggedIn = false;
                 updateAuthState();
                 alert('Đã đăng xuất tài khoản!');
+                switchPage('home');
             } else {
-                switchPage('register');
+                switchPage('login');
             }
         }
 
@@ -1420,20 +1641,13 @@
             localStorage.setItem('web_theme', newTheme);
         }
 
-        // Xử lý Validation Username 3D
+        // Validation Username
         function validateUsernameInput(input) {
             const err = document.getElementById('regUsernameError');
             let val = input.value;
-
-            // Loại bỏ ký tự tiếng Việt có dấu
             val = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D");
-            // Lọc chỉ giữ ký tự chữ, số và . _
             val = val.replace(/[^a-zA-Z0-9._]/g, '');
-
-            if (val.length > 12) {
-                val = val.substring(0, 12);
-            }
-
+            if (val.length > 12) val = val.substring(0, 12);
             input.value = val;
 
             if (val.endsWith('.') || val.length === 0) {
@@ -1446,16 +1660,37 @@
         function submitRegister() {
             const input = document.getElementById('regUsername');
             const val = input.value;
-
             if (!val || val.endsWith('.')) {
-                alert('Tên đăng nhập không hợp lệ! Vui lòng kiểm tra lại.');
+                alert('Tên đăng nhập không hợp lệ!');
                 return;
             }
-
+            currentUser.username = val;
             isLoggedIn = true;
             updateAuthState();
             alert('Đăng ký tài khoản thành công!');
             switchPage('home');
+        }
+
+        function submitLogin() {
+            const userInput = document.getElementById('loginUser').value.trim();
+            if (!userInput) {
+                alert('Vui lòng nhập tên đăng nhập hoặc email!');
+                return;
+            }
+            currentUser.username = userInput.includes('@') ? userInput.split('@')[0] : userInput;
+            isLoggedIn = true;
+            updateAuthState();
+            alert('Đăng nhập thành công!');
+            switchPage('home');
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+            } else {
+                input.type = 'password';
+            }
         }
 
         function switchTopupTab(type) {
