@@ -12,11 +12,11 @@
             --bg-color: #0F172A;
             --text-color: #F9FAFB;
             --text-secondary: #9CA3AF;
-            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-bg: rgba(255, 255, 255, 0.94);
             --border-color: #E5E7EB;
             --accent: #eb2a51;
             --accent-hover: #d02044;
-            --header-bg: rgba(255, 255, 255, 0.92);
+            --header-bg: rgba(255, 255, 255, 0.94);
             --sidebar-bg: #FFFFFF;
             --shadow-3d: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
             --shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.08);
@@ -31,12 +31,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* BACKGROUND MỚI: FULL TRÊN PC, CHUẨN VỊ TRÍ KHÔNG CẮT TRÊN MOBILE */
+        /* BACKGROUND ĐẶT ĐÚNG VỊ TRÍ NHÂN VẬT TRÊN MOBILE VÀ PC */
         body {
             background-image: url('image/background.jpeg');
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-position: center top;
+            background-position: center center;
             background-size: cover;
             color: #111827;
             min-height: 100vh;
@@ -46,7 +46,8 @@
 
         @media (max-width: 768px) {
             body {
-                background-size: 100% auto;
+                background-position: 62% center;
+                background-size: cover;
                 background-attachment: scroll;
             }
         }
@@ -77,9 +78,8 @@
             align-items: center;
         }
 
-        /* Tăng kích thước Logo to hơn */
         .logo {
-            height: 48px;
+            height: 54px;
             width: auto;
             object-fit: contain;
             cursor: pointer;
@@ -106,10 +106,6 @@
             border-radius: 20px;
             cursor: pointer;
             transition: var(--transition);
-        }
-
-        .wallet-btn:hover {
-            border-color: var(--accent);
         }
 
         .wallet-icon {
@@ -149,10 +145,6 @@
             background: var(--accent);
             border-color: var(--accent);
             color: #FFFFFF;
-        }
-
-        .auth-btn:hover {
-            border-color: var(--accent);
         }
 
         .header-avatar {
@@ -294,6 +286,8 @@
             stroke: #111827;
             fill: none;
             stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .nav-item:hover, .nav-item.active {
@@ -315,13 +309,6 @@
 
         .submenu.open {
             display: flex;
-        }
-
-        .lienhe-gif-btn {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
-            display: block;
         }
 
         /* MAIN CONTENT */
@@ -347,7 +334,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* TRANG CHỦ BANNER & TIÊU ĐỀ */
         .home-banner {
             width: 100%;
             height: auto;
@@ -392,7 +378,6 @@
             border-radius: 2px;
         }
 
-        /* LƯỚI KHUNG DỊCH VỤ & ACC GAME - HIỆU ỨNG 3D BÓNG ĐỔ KHÔNG VIỀN */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -474,7 +459,7 @@
             object-fit: contain;
         }
 
-        /* AUTH 3D CARDS (ĐĂNG KÝ & ĐĂNG NHẬP) */
+        /* AUTH 3D CARDS */
         .auth-card-3d {
             max-width: 440px;
             margin: 20px auto;
@@ -551,7 +536,7 @@
             background: #d02044;
         }
 
-        /* POPUP BẮT BUỘC ĐĂNG NHẬP */
+        /* POPUP ĐĂNG NHẬP */
         .login-popup-overlay {
             position: fixed;
             inset: 0;
@@ -619,7 +604,7 @@
             color: #eb2a51;
         }
 
-        /* NẠP TIỀN TAB */
+        /* NẠP TIỀN */
         .page-card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -776,7 +761,7 @@
             cursor: pointer;
         }
 
-        /* LỊCH SỬ ĐƠN (IMAGE_9.PNG) */
+        /* LỊCH SỬ ĐƠN */
         .order-stats-container {
             display: flex;
             flex-direction: column;
@@ -949,16 +934,6 @@
             gap: 8px;
         }
 
-        .profile-status-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: #6B7280;
-        }
-
-        .profile-status-text.linked {
-            color: #10B981;
-        }
-
         .link-action-btn {
             background: #eb2a51;
             color: #FFFFFF;
@@ -1005,11 +980,11 @@
             stroke-width: 2;
         }
 
-        /* FOOTER */
+        /* FOOTER CÓ NÚT GIF HỖ TRỢ TO LÊN VÀ LOGO TO */
         footer {
             background-color: #000000;
             color: #FFFFFF;
-            padding: 32px 16px;
+            padding: 36px 16px;
             text-align: center;
             margin-top: auto;
             border-top: 1px solid #222222;
@@ -1021,11 +996,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .footer-logo {
-            height: 48px;
+            height: 60px;
             width: auto;
             object-fit: contain;
         }
@@ -1042,9 +1017,24 @@
             color: #eb2a51;
         }
 
+        /* Nút gif liên hệ to lên rõ nét ở footer */
+        .lienhe-gif-btn {
+            height: 54px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin-top: 6px;
+            filter: drop-shadow(0 4px 10px rgba(235, 42, 81, 0.4));
+            transition: var(--transition);
+        }
+
+        .lienhe-gif-btn:hover {
+            transform: scale(1.05);
+        }
+
         @media (max-width: 640px) {
             header { padding: 8px 12px; }
-            .logo { height: 40px; }
+            .logo { height: 46px; }
             .denomination-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
@@ -1065,7 +1055,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="image/logo.png" alt="Logo Shop" class="logo" style="height: 38px;" onclick="switchPage('home'); toggleSidebar();">
+            <img src="image/logo.png" alt="Logo Shop" class="logo" style="height: 44px;" onclick="switchPage('home'); toggleSidebar();">
             <button class="close-menu-btn" onclick="toggleSidebar()">✕</button>
         </div>
         
@@ -1096,9 +1086,10 @@
                 Hỗ trợ
             </button>
             <div class="submenu" id="supportSubmenu">
-                <!-- THAY THẾ CHỮ VÀ ICON FACEBOOK BẰNG NUT NẢY GIF -->
-                <a href="https://www.facebook.com/profile.php?id=61596203993256&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" style="text-decoration: none;">
-                    <img src="image/lienhe.gif" alt="Liên hệ Facebook" class="lienhe-gif-btn">
+                <!-- TRẢ LẠI ICON FACEBOOK SVG CHO HỖ TRỢ FACEBOOK TRONG MENU -->
+                <a href="https://www.facebook.com/profile.php?id=61596203993256&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" class="nav-item">
+                    <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    Facebook hỗ trợ
                 </a>
             </div>
 
@@ -1156,7 +1147,6 @@
                     </div>
                 </div>
 
-                <!-- BỔ SUNG CÀY THUÊ GENSHIN -->
                 <div class="service-card">
                     <img src="image/caythuegenshin.png" alt="Genshin Impact" class="service-banner">
                     <div class="service-info-container">
@@ -1371,12 +1361,16 @@
         </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER CHỨA NÚT GIF HỖ TRỢ TO LÊN -->
     <footer>
         <div class="footer-content">
             <img src="image/logo.png" alt="Logo Shop" class="footer-logo">
             <div class="footer-desc">Shop dvcaythue247 chuyên cung cấp acc LQ, FF, Roblox giá rẻ. Các dịch vụ cày thuê đa dạng game phổ biến.</div>
             <div class="footer-tagline">Uy tín - Giá rẻ - Bảo mật</div>
+            
+            <a href="https://www.facebook.com/profile.php?id=61596203993256&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank">
+                <img src="image/lienhe.gif" alt="Liên hệ hỗ trợ" class="lienhe-gif-btn">
+            </a>
         </div>
     </footer>
 
@@ -1407,8 +1401,8 @@
                     <div class="sidebar-user" onclick="switchPage('profile'); toggleSidebar();" style="cursor: pointer;">
                         <img src="image/avt.jpeg" alt="Avatar">
                         <div class="sidebar-user-info">
-                            <div class="username">${currentUser.username}</div>
-                            <div class="userbal">${currentUser.balance}</div>
+                            <div class="username" style="font-weight:600; font-size:14px;">${currentUser.username}</div>
+                            <div class="userbal" style="font-size:10px; color:#eb2a51; font-family:'Press Start 2P',monospace; margin-top:4px;">${currentUser.balance}</div>
                         </div>
                     </div>
                 `;
@@ -1431,7 +1425,7 @@
                 sidebarUser.innerHTML = `
                     <div class="sidebar-user">
                         <div class="sidebar-user-info">
-                            <div class="username" style="color: #6B7280;">Chưa đăng nhập tài khoản</div>
+                            <div class="username" style="color: #6B7280; font-size: 14px; font-weight: 500;">Chưa đăng nhập tài khoản</div>
                         </div>
                     </div>
                 `;
@@ -1496,7 +1490,6 @@
         }
 
         function switchPage(pageId) {
-            // KIỂM TRA POPUP ĐĂNG NHẬP KHI CHUYỂN TAB KHÁC TRANG CHỦ MÀ CHƯA ĐĂNG NHẬP
             if (!isLoggedIn && pageId !== 'home' && pageId !== 'login' && pageId !== 'register') {
                 document.getElementById('loginPopupOverlay').classList.add('active');
                 return;
