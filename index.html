@@ -31,9 +31,9 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* BACKGROUND ĐẶT ĐÚNG VỊ TRÍ NHÂN VẬT TRÊN MOBILE VÀ PC */
+        /* BACKGROUND MÁY TÍNH DÙNG BACKGROUND1.JPEG, ĐIỆN THOẠI DÙNG BACKGROUND2.JPEG */
         body {
-            background-image: url('image/background.jpeg');
+            background-image: url('image/background1.jpeg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center center;
@@ -46,13 +46,14 @@
 
         @media (max-width: 768px) {
             body {
-                background-position: 62% center;
+                background-image: url('image/background2.jpeg');
+                background-position: center center;
                 background-size: cover;
                 background-attachment: scroll;
             }
         }
 
-        /* HEADER & LOGO TO LÊN */
+        /* HEADER & LOGO */
         header {
             position: fixed;
             top: 12px;
@@ -334,12 +335,26 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .home-banner {
+        /* BANNER SLIDER DẠNG LƯỚT TỰ ĐỘNG 2 GIÂY MỘT LẦN */
+        .banner-slider-container {
             width: 100%;
-            height: auto;
+            overflow: hidden;
             border-radius: 16px;
             box-shadow: var(--shadow-3d);
             margin-bottom: 28px;
+            position: relative;
+        }
+
+        .banner-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+        }
+
+        .home-banner-slide {
+            min-width: 100%;
+            width: 100%;
+            height: auto;
             object-fit: cover;
             display: block;
         }
@@ -459,7 +474,7 @@
             object-fit: contain;
         }
 
-        /* AUTH 3D CARDS */
+        /* AUTH CARDS */
         .auth-card-3d {
             max-width: 440px;
             margin: 20px auto;
@@ -980,7 +995,7 @@
             stroke-width: 2;
         }
 
-        /* FOOTER CÓ NÚT GIF HỖ TRỢ TO LÊN VÀ LOGO TO */
+        /* FOOTER */
         footer {
             background-color: #000000;
             color: #FFFFFF;
@@ -1017,7 +1032,6 @@
             color: #eb2a51;
         }
 
-        /* Nút gif liên hệ to lên rõ nét ở footer */
         .lienhe-gif-btn {
             height: 54px;
             width: auto;
@@ -1044,7 +1058,7 @@
     <!-- HEADER -->
     <header>
         <div class="header-left">
-            <img src="image/logo.png" alt="Logo Shop" class="logo" onclick="switchPage('home')">
+            <img src="image/logo1.png" alt="Logo Shop" class="logo" onclick="switchPage('home')">
         </div>
         <div class="header-right" id="headerRightContent">
             <!-- Render động -->
@@ -1055,7 +1069,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="image/logo.png" alt="Logo Shop" class="logo" style="height: 44px;" onclick="switchPage('home'); toggleSidebar();">
+            <img src="image/logo1.png" alt="Logo Shop" class="logo" style="height: 44px;" onclick="switchPage('home'); toggleSidebar();">
             <button class="close-menu-btn" onclick="toggleSidebar()">✕</button>
         </div>
         
@@ -1086,7 +1100,6 @@
                 Hỗ trợ
             </button>
             <div class="submenu" id="supportSubmenu">
-                <!-- TRẢ LẠI ICON FACEBOOK SVG CHO HỖ TRỢ FACEBOOK TRONG MENU -->
                 <a href="https://www.facebook.com/profile.php?id=61596203993256&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" class="nav-item">
                     <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     Facebook hỗ trợ
@@ -1116,7 +1129,13 @@
     <main>
         <!-- TRANG CHỦ -->
         <div id="home" class="page-view active">
-            <img src="image/banner.png" alt="Banner" class="home-banner">
+            <!-- BANNER SLIDER TỰ ĐỘNG LƯỚT 2 GIÂY 1 LẦN -->
+            <div class="banner-slider-container">
+                <div class="banner-track" id="bannerTrack">
+                    <img src="image/banner.png" alt="Banner 1" class="home-banner-slide">
+                    <img src="image/banner2.png" alt="Banner 2" class="home-banner-slide">
+                </div>
+            </div>
 
             <!-- DỊCH VỤ CÀY THUÊ -->
             <div class="service-heading-container">
@@ -1361,11 +1380,11 @@
         </div>
     </main>
 
-    <!-- FOOTER CHỨA NÚT GIF HỖ TRỢ TO LÊN -->
+    <!-- FOOTER CHỨA TEXT MỚI VÀ NÚT LIÊN HỆ -->
     <footer>
         <div class="footer-content">
-            <img src="image/logo.png" alt="Logo Shop" class="footer-logo">
-            <div class="footer-desc">Shop dvcaythue247 chuyên cung cấp acc LQ, FF, Roblox giá rẻ. Các dịch vụ cày thuê đa dạng game phổ biến.</div>
+            <img src="image/logo1.png" alt="Logo Shop" class="footer-logo">
+            <div class="footer-desc">Shop ACCNGON247.XO.JE chuyên cung cấp acc LQ, FF, Roblox giá rẻ. Các dịch vụ cày thuê đa dạng game phổ biến.</div>
             <div class="footer-tagline">Uy tín - Giá rẻ - Bảo mật</div>
             
             <a href="https://www.facebook.com/profile.php?id=61596203993256&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank">
@@ -1377,6 +1396,19 @@
     <script>
         let isLoggedIn = false;
         let currentUser = { username: "luonvuituoi7878", balance: "500,000đ" };
+
+        // BANNER AUTO SLIDER (2 GIÂY 1 LẦN)
+        let currentBannerIndex = 0;
+        const bannerTrack = document.getElementById('bannerTrack');
+        const totalBanners = 2; // banner.png và banner2.png
+
+        function autoSlideBanners() {
+            currentBannerIndex = (currentBannerIndex + 1) % totalBanners;
+            if (bannerTrack) {
+                bannerTrack.style.transform = `translateX(-${currentBannerIndex * 100}%)`;
+            }
+        }
+        setInterval(autoSlideBanners, 2000);
 
         function updateAuthState() {
             const headerRight = document.getElementById('headerRightContent');
