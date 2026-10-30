@@ -31,7 +31,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* BACKGROUND MÁY TÍNH DÙNG BACKGROUND1.JPEG, ĐIỆN THOẠI DÙNG BACKGROUND2.JPEG */
+        /* BACKGROUND MÁY TÍNH VÀ ĐIỆN THOẠI CHUẨN KÍCH CỠ KHÔNG BỊ ZOOM MỜ */
         body {
             background-image: url('image/background1.jpeg');
             background-repeat: no-repeat;
@@ -47,13 +47,14 @@
         @media (max-width: 768px) {
             body {
                 background-image: url('image/background2.jpeg');
-                background-position: center center;
+                background-position: center top;
                 background-size: cover;
                 background-attachment: scroll;
+                padding-bottom: 70px; /* Tránh bị che bởi bottom bar trên mobile */
             }
         }
 
-        /* HEADER & LOGO */
+        /* HEADER CHỈ GIỮ LẠI LOGO VÀ MENU BUTTON */
         header {
             position: fixed;
             top: 12px;
@@ -95,6 +96,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .header-right .auth-actions,
+            .header-right .wallet-btn,
+            .header-right .avatar-btn {
+                display: none; /* Ẩn các nút auth ở header trên mobile, chuyển xuống bottom bar */
+            }
         }
 
         .wallet-btn {
@@ -176,6 +185,42 @@
             height: 2px;
             background-color: #111827;
             border-radius: 2px;
+        }
+
+        /* THANH BAR DƯỚI ĐÁY CHO MOBILE (CHỨA NÚT ĐĂNG NHẬP / ĐĂNG KÝ) */
+        .mobile-bottom-bar {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-bottom-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(12px);
+                border-top: 1px solid var(--border-color);
+                padding: 10px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                z-index: 99;
+                box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        .mobile-bottom-bar .auth-actions {
+            width: 100%;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .mobile-bottom-bar .auth-btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
         }
 
         /* SIDEBAR MENU */
@@ -335,7 +380,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* BANNER SLIDER DẠNG LƯỚT TỰ ĐỘNG 2 GIÂY MỘT LẦN */
+        /* BANNER SLIDER DẠNG LƯỚT TỰ ĐỘNG (DỪNG KHI VUỐT/CHẠM) */
         .banner-slider-container {
             width: 100%;
             overflow: hidden;
@@ -343,6 +388,7 @@
             box-shadow: var(--shadow-3d);
             margin-bottom: 28px;
             position: relative;
+            cursor: grab;
         }
 
         .banner-track {
@@ -995,7 +1041,7 @@
             stroke-width: 2;
         }
 
-        /* FOOTER */
+        /* FOOTER VÀ NÚT GIF HỖ TRỢ TO RÕ */
         footer {
             background-color: #000000;
             color: #FFFFFF;
@@ -1033,17 +1079,17 @@
         }
 
         .lienhe-gif-btn {
-            height: 54px;
+            height: 68px; /* Tăng kích thước nút GIF to hơn theo yêu cầu */
             width: auto;
             object-fit: contain;
             display: block;
-            margin-top: 6px;
-            filter: drop-shadow(0 4px 10px rgba(235, 42, 81, 0.4));
+            margin-top: 8px;
+            filter: drop-shadow(0 6px 14px rgba(235, 42, 81, 0.5));
             transition: var(--transition);
         }
 
         .lienhe-gif-btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
         @media (max-width: 640px) {
@@ -1055,15 +1101,20 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- HEADER (CHỈ GIỮ LẠI LOGO VÀ MENU BUTTON) -->
     <header>
         <div class="header-left">
             <img src="image/logo1.png" alt="Logo Shop" class="logo" onclick="switchPage('home')">
         </div>
         <div class="header-right" id="headerRightContent">
-            <!-- Render động -->
+            <!-- Render động cho desktop -->
         </div>
     </header>
+
+    <!-- THANH BAR ĐÁY MOBILE (CHỨA ĐĂNG NHẬP / ĐĂNG KÝ) -->
+    <div class="mobile-bottom-bar" id="mobileBottomBar">
+        <!-- Render động -->
+    </div>
 
     <!-- SIDEBAR MENU -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -1129,8 +1180,8 @@
     <main>
         <!-- TRANG CHỦ -->
         <div id="home" class="page-view active">
-            <!-- BANNER SLIDER TỰ ĐỘNG LƯỚT 2 GIÂY 1 LẦN -->
-            <div class="banner-slider-container">
+            <!-- BANNER SLIDER TỰ ĐỘNG LƯỚT (DỪNG KHI VUỐT/CHẠM) -->
+            <div class="banner-slider-container" id="bannerContainer">
                 <div class="banner-track" id="bannerTrack">
                     <img src="image/banner.png" alt="Banner 1" class="home-banner-slide">
                     <img src="image/banner2.png" alt="Banner 2" class="home-banner-slide">
@@ -1149,7 +1200,7 @@
                     <div class="service-info-container">
                         <div class="service-title">Dịch vụ cày thuê Chung Sức Liên Quân</div>
                         <div class="service-status">Sẵn Sàng</div>
-                        <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Liên Quân')">
+                        <button class="view-all-btn" onclick="switchPage('home')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1160,7 +1211,7 @@
                     <div class="service-info-container">
                         <div class="service-title">Dịch vụ cày thuê Blox Fruits theo Y/C</div>
                         <div class="service-status">Sẵn Sàng</div>
-                        <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Blox Fruits')">
+                        <button class="view-all-btn" onclick="switchPage('home')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1171,7 +1222,19 @@
                     <div class="service-info-container">
                         <div class="service-title">Dịch vụ Cày thuê Genshin</div>
                         <div class="service-status">Sẵn Sàng</div>
-                        <button class="view-all-btn" onclick="alert('Chuyển đến chi tiết dịch vụ Genshin')">
+                        <button class="view-all-btn" onclick="switchPage('home')">
+                            <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- BỔ SUNG CÀY THUÊ FC ONLINE -->
+                <div class="service-card">
+                    <img src="image/caythuefconline.png" alt="FC Online" class="service-banner">
+                    <div class="service-info-container">
+                        <div class="service-title">Dịch vụ Cày thuê FC Online</div>
+                        <div class="service-status">Sẵn Sàng</div>
+                        <button class="view-all-btn" onclick="switchPage('home')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1192,7 +1255,7 @@
                     <div class="service-info-container">
                         <div class="service-title">Acc Reg Trắng thông tin LV16 (Cày chung sức)</div>
                         <div class="service-quantity">Số lượng: <span>0</span></div>
-                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Reg')">
+                        <button class="view-all-btn" onclick="switchPage('home')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1207,7 +1270,7 @@
                     <div class="service-info-container">
                         <div class="service-title">Acc Blox Fruits tự chọn</div>
                         <div class="service-quantity">Số lượng: <span>0</span></div>
-                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Blox Fruits')">
+                        <button class="view-all-btn" onclick="switchPage('home')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1218,7 +1281,7 @@
                     <div class="service-info-container">
                         <div class="service-title">Acc Steal An Egg</div>
                         <div class="service-quantity">Số lượng: <span>0</span></div>
-                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Steal An Egg')">
+                        <button class="view-all-btn" onclick="switchPage('home')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1233,7 +1296,7 @@
                     <div class="service-info-container">
                         <div class="service-title">Acc Clone FF tự chọn</div>
                         <div class="service-quantity">Số lượng: <span>0</span></div>
-                        <button class="view-all-btn" onclick="alert('Xem danh sách Acc Clone FF')">
+                        <button class="view-all-btn" onclick="switchPage('home')">
                             <img src="image/xemtatca.gif" alt="Xem Tất Cả" class="view-all-gif">
                         </button>
                     </div>
@@ -1320,6 +1383,8 @@
                             <option value="viettel">Viettel</option>
                             <option value="mobifone">Mobifone</option>
                             <option value="vinaphone">Vinaphone</option>
+                            <option value="garena">Garena</option>
+                            <option value="zing">Zing</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1380,7 +1445,7 @@
         </div>
     </main>
 
-    <!-- FOOTER CHỨA TEXT MỚI VÀ NÚT LIÊN HỆ -->
+    <!-- FOOTER CHỨA TEXT VÀ NÚT GIF HỖ TRỢ TO LÊN -->
     <footer>
         <div class="footer-content">
             <img src="image/logo1.png" alt="Logo Shop" class="footer-logo">
@@ -1397,10 +1462,12 @@
         let isLoggedIn = false;
         let currentUser = { username: "luonvuituoi7878", balance: "500,000đ" };
 
-        // BANNER AUTO SLIDER (2 GIÂY 1 LẦN)
+        // BANNER AUTO SLIDER (2 GIÂY 1 LẦN, DỪNG KHI VUỐT/CHẠM)
         let currentBannerIndex = 0;
         const bannerTrack = document.getElementById('bannerTrack');
-        const totalBanners = 2; // banner.png và banner2.png
+        const bannerContainer = document.getElementById('bannerContainer');
+        const totalBanners = 2;
+        let autoSlideTimer = setInterval(autoSlideBanners, 2000);
 
         function autoSlideBanners() {
             currentBannerIndex = (currentBannerIndex + 1) % totalBanners;
@@ -1408,10 +1475,20 @@
                 bannerTrack.style.transform = `translateX(-${currentBannerIndex * 100}%)`;
             }
         }
-        setInterval(autoSlideBanners, 2000);
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideTimer);
+        }
+
+        if (bannerContainer) {
+            bannerContainer.addEventListener('touchstart', stopAutoSlide);
+            bannerContainer.addEventListener('mousedown', stopAutoSlide);
+            bannerContainer.addEventListener('wheel', stopAutoSlide);
+        }
 
         function updateAuthState() {
             const headerRight = document.getElementById('headerRightContent');
+            const mobileBottomBar = document.getElementById('mobileBottomBar');
             const sidebarUser = document.getElementById('sidebarUserSection');
             const authNavBtn = document.getElementById('authNavBtn');
 
@@ -1424,9 +1501,14 @@
                     <button class="avatar-btn" onclick="switchPage('profile')">
                         <img src="image/avt.jpeg" alt="Avatar" class="header-avatar">
                     </button>
-                    <button class="menu-toggle-btn" onclick="toggleSidebar()">
-                        <span></span><span></span><span></span>
+                `;
+
+                mobileBottomBar.innerHTML = `
+                    <button class="wallet-btn" onclick="switchPage('topup')" style="flex:1; justify-content:center; margin-right:8px;">
+                        <svg class="wallet-icon" viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path></svg>
+                        <span class="balance-text">${currentUser.balance}</span>
                     </button>
+                    <button class="auth-btn primary" onclick="switchPage('profile')" style="flex:1;">Tài khoản</button>
                 `;
 
                 sidebarUser.innerHTML = `
@@ -1444,14 +1526,12 @@
                     Đăng xuất
                 `;
             } else {
-                headerRight.innerHTML = `
+                headerRight.innerHTML = ``;
+                mobileBottomBar.innerHTML = `
                     <div class="auth-actions">
                         <button class="auth-btn" onclick="switchPage('login')">Đăng nhập</button>
                         <button class="auth-btn primary" onclick="switchPage('register')">Đăng ký</button>
                     </div>
-                    <button class="menu-toggle-btn" onclick="toggleSidebar()">
-                        <span></span><span></span><span></span>
-                    </button>
                 `;
 
                 sidebarUser.innerHTML = `
@@ -1514,7 +1594,7 @@
                                 <label class="form-label">Nhập mật khẩu mới</label>
                                 <input type="password" class="input-field" placeholder="Mật khẩu mới..." style="margin-bottom: 0;">
                             </div>
-                            <button class="link-action-btn" style="width: 100%; padding: 10px;" onclick="alert('Đổi mật khẩu thành công!')">Cập nhật mật khẩu</button>
+                            <button class="link-action-btn" style="width: 100%; padding: 10px;" onclick="switchPage('profile')">Cập nhật mật khẩu</button>
                         </div>
                     </div>
                 </div>
@@ -1551,7 +1631,6 @@
             if (isLoggedIn) {
                 isLoggedIn = false;
                 updateAuthState();
-                alert('Đã đăng xuất tài khoản!');
                 switchPage('home');
             } else {
                 switchPage('login');
@@ -1588,26 +1667,22 @@
             const input = document.getElementById('regUsername');
             const val = input.value;
             if (!val || val.endsWith('.')) {
-                alert('Tên đăng nhập không hợp lệ!');
                 return;
             }
             currentUser.username = val;
             isLoggedIn = true;
             updateAuthState();
-            alert('Đăng ký tài khoản thành công!');
             switchPage('home');
         }
 
         function submitLogin() {
             const userInput = document.getElementById('loginUser').value.trim();
             if (!userInput) {
-                alert('Vui lòng nhập tên đăng nhập hoặc email!');
                 return;
             }
             currentUser.username = userInput.includes('@') ? userInput.split('@')[0] : userInput;
             isLoggedIn = true;
             updateAuthState();
-            alert('Đăng nhập thành công!');
             switchPage('home');
         }
 
@@ -1637,7 +1712,6 @@
         function copyTransferContent() {
             const text = document.getElementById('transferContentText').innerText;
             navigator.clipboard.writeText(text);
-            alert('Đã copy nội dung!');
         }
 
         function createDepositOrder(type) {
@@ -1645,7 +1719,6 @@
             if (type === 'bank') {
                 document.getElementById('bankOrderCode').value = randomCode;
             }
-            alert('Đã tạo đơn nạp tiền thành công!');
         }
 
         updateAuthState();
